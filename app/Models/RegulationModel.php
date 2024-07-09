@@ -17,7 +17,25 @@ class RegulationModel
 
     public function getAllRegulations()
     {
-        return $this->collection->find()->toArray();
+        $regulations = $this->collection->find()->toArray();
+
+        // Capitalize first letter of 'jenis_peraturan' and 'kepatuhan'
+        foreach ($regulations as &$regulation) {
+            $regulation['jenis_peraturan'] = ucfirst($regulation['jenis_peraturan']);
+            $regulation['kepatuhan'] = ucfirst($regulation['kepatuhan']);
+        }
+
+        return $regulations;
+    }
+
+    public function getRegulationById($id)
+    {
+        $regulation = $this->collection->findOne(['_id' => new \MongoDB\BSON\ObjectId($id)]);
+        if ($regulation) {
+            $regulation['jenis_peraturan'] = ucfirst($regulation['jenis_peraturan']);
+            $regulation['kepatuhan'] = ucfirst($regulation['kepatuhan']);
+        }
+        return $regulation;
     }
 
     public function insertRegulation($data)
@@ -33,5 +51,18 @@ class RegulationModel
     public function deleteRegulation($id)
     {
         return $this->collection->deleteOne(['_id' => new \MongoDB\BSON\ObjectId($id)]);
+    }
+
+    public function testConnection()
+    {
+        try {
+            $config = new \Config\MongoDbConfig();
+            $client = new Client("mongodb://{$config->host}:{$config->port}");
+            $dbs = $client->listDatabases();
+            return $dbs;
+        } catch (\Exception $e) {
+            log_message('error', $e->getMessage());
+            return false;
+        }
     }
 }

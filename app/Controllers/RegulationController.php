@@ -15,13 +15,36 @@ class RegulationController extends BaseController
 
     public function index()
     {
-        $data['regulations'] = $this->regulationModel->getAllRegulations();
-        return view('regulations/index', $data);
+        try {
+            $data['regulations'] = $this->regulationModel->getAllRegulations();
+            return view('admin/manage_regulations', $data);
+        } catch (\Exception $e) {
+            log_message('error', $e->getMessage());
+            return view('errors/html/error_500');
+        }
+    }
+
+    public function add()
+    {
+        log_message('debug', 'Navigating to add regulation form');
+        return view('admin/regulation_form');
     }
 
     public function create()
     {
-        // Logic for creating regulation
+        $data = [
+            'jenis_peraturan' => $this->request->getPost('jenis_peraturan'),
+            'nama_peraturan' => $this->request->getPost('nama_peraturan'),
+            'fungsi_terkait' => $this->request->getPost('fungsi_terkait'),
+            'kepatuhan' => $this->request->getPost('kepatuhan')
+        ];
+        $this->regulationModel->insertRegulation($data);
+        return redirect()->to('/regulations');
+    }
+
+    public function edit($id)
+    {
+        // Logic for editing regulation
     }
 
     public function update($id)
@@ -31,6 +54,7 @@ class RegulationController extends BaseController
 
     public function delete($id)
     {
-        // Logic for deleting regulation
+        $this->regulationModel->deleteRegulation($id);
+        return redirect()->to('/regulations');
     }
 }

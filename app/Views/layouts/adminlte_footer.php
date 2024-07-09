@@ -3,7 +3,7 @@
             <div class="float-right d-none d-sm-inline">
                 Anything you want
             </div>
-            <strong>&copy; 2024 HSSE Regulations.</strong> All rights reserved.
+            <strong>&copy; 2024 Pertamina EP Cepu.</strong> All rights reserved.
         </footer>
     </div>
     <!-- jQuery -->

@@ -11,6 +11,7 @@ class UserModel
     public function __construct()
     {
         $config = new \Config\MongoDbConfig();
+        $client =
         $client = new Client("mongodb://{$config->host}:{$config->port}");
         $this->collection = $client->{$config->database}->users;
     }
