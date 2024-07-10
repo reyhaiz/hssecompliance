@@ -37,5 +37,3 @@
         </div>
     </div>
 </div>
-
-<?= $this->include('layouts/adminlte_footer') ?>
