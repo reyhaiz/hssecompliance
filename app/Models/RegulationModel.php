@@ -2,42 +2,41 @@
 
 namespace App\Models;
 
-use CodeIgniter\Model;
 use MongoDB\Client;
 
-class RegulationModel extends Model
+class RegulationModel
 {
-    protected $collection = 'regulations';
+    protected $collection;
 
     public function __construct()
     {
-        $this->client = new Client('mongodb://localhost:27017'); // Pastikan URI ini benar
-        $this->db = $this->client->hssecompliance1; // Pastikan nama database ini benar
+        $config = new \Config\MongoDbConfig();
+        $client = new Client("mongodb://{$config->host}:{$config->port}");
+        $this->collection = $client->{$config->database}->regulations;
     }
 
     public function getAllRegulations()
     {
-        $regulations = $this->db->{$this->collection}->find()->toArray();
-        return $regulations;
+        return $this->collection->find()->toArray();
     }
 
     public function getRegulationById($id)
     {
-        return $this->db->{$this->collection}->findOne(['_id' => new \MongoDB\BSON\ObjectId($id)]);
+        return $this->collection->findOne(['_id' => new \MongoDB\BSON\ObjectId($id)]);
     }
 
     public function createRegulation($data)
     {
-        return $this->db->{$this->collection}->insertOne($data);
+        return $this->collection->insertOne($data);
     }
 
     public function updateRegulation($id, $data)
     {
-        return $this->db->{$this->collection}->updateOne(['_id' => new \MongoDB\BSON\ObjectId($id)], ['$set' => $data]);
+        return $this->collection->updateOne(['_id' => new \MongoDB\BSON\ObjectId($id)], ['$set' => $data]);
     }
 
     public function deleteRegulation($id)
     {
-        return $this->db->{$this->collection}->deleteOne(['_id' => new \MongoDB\BSON\ObjectId($id)]);
+        return $this->collection->deleteOne(['_id' => new \MongoDB\BSON\ObjectId($id)]);
     }
 }

@@ -37,12 +37,12 @@
                             </thead>
                             <tbody>
                                 <?php foreach ($regulations as $index => $regulation): ?>
-                                <tr onclick="window.location.href='<?= base_url('regulation/detail/'.$regulation['_id']) ?>'">
+                                    <tr onclick="window.location.href='<?= base_url('regulation/detail/'.$regulation->_id) ?>'">
                                     <td><?= $index + 1 ?></td>
-                                    <td><?= $regulation['jenis_peraturan'] ?? '' ?></td>
-                                    <td><?= $regulation['nama_peraturan'] ?? '' ?></td>
-                                    <td><?= $regulation['fungsi_terkait'] ?? '' ?></td>
-                                    <td><?= $regulation['kepatuhan'] ?? '' ?></td>
+                                    <td><?= $regulation->jenis_peraturan ?? '' ?></td>
+                                    <td><?= $regulation->nama_peraturan ?? '' ?></td>
+                                    <td><?= $regulation->fungsi_terkait ?? '' ?></td>
+                                    <td><?= $regulation->kepatuhan ?? '' ?></td>
                                 </tr>
                                 <?php endforeach; ?>
                             </tbody>

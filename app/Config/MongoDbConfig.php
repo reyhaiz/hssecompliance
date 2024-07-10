@@ -13,7 +13,6 @@ class MongoDbConfig extends BaseConfig
 
     public function __construct()
     {
-        // Tidak perlu mengatur username dan password karena tidak ada autentikasi
         $this->options = [];
     }
 }

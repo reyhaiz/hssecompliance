@@ -24,18 +24,14 @@
                 <li class="nav-item">
                     <a href="/dashboard" class="nav-link <?= (uri_string() == 'dashboard') ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Dashboard
-                        </p>
+                        <p>Dashboard</p>
                     </a>
                 </li>
                 <!-- Manage Regulations Menu -->
                 <li class="nav-item">
                     <a href="/regulations" class="nav-link <?= (uri_string() == 'regulations' || uri_string() == 'regulations/add' || strpos(uri_string(), 'regulations/edit') !== false || strpos(uri_string(), 'regulations/detail') !== false) ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-book"></i>
-                        <p>
-                            Manage Regulations
-                        </p>
+                        <p>Manage Regulations</p>
                     </a>
                 </li>
             </ul>
