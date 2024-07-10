@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\RegulationModel;
+use CodeIgniter\Controller;
 
 class RegulationController extends BaseController
 {
@@ -15,19 +16,37 @@ class RegulationController extends BaseController
 
     public function index()
     {
-        try {
-            $data['regulations'] = $this->regulationModel->getAllRegulations();
-            return view('admin/manage_regulations', $data);
-        } catch (\Exception $e) {
-            log_message('error', $e->getMessage());
-            return view('errors/html/error_500');
+        $regulations = $this->regulationModel->getAllRegulations();
+        $data = [
+            'regulations' => $regulations,
+        ];
+        echo view('layouts/adminlte_header');
+        echo view('layouts/sidebar');
+        echo view('admin/manage_regulations', $data);
+        echo view('layouts/adminlte_footer');
+    }
+
+    public function detail($id)
+    {
+        $regulation = $this->regulationModel->getRegulationById($id);
+        if (!$regulation) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('Regulation not found');
         }
+        $data = [
+            'regulation' => $regulation,
+        ];
+        echo view('layouts/adminlte_header');
+        echo view('layouts/sidebar');
+        echo view('admin/regulation_detail', $data);
+        echo view('layouts/adminlte_footer');
     }
 
     public function add()
     {
-        log_message('debug', 'Navigating to add regulation form');
-        return view('admin/regulation_form');
+        echo view('layouts/adminlte_header');
+        echo view('layouts/sidebar');
+        echo view('admin/regulation_form');
+        echo view('layouts/adminlte_footer');
     }
 
     public function create()
@@ -36,25 +55,42 @@ class RegulationController extends BaseController
             'jenis_peraturan' => $this->request->getPost('jenis_peraturan'),
             'nama_peraturan' => $this->request->getPost('nama_peraturan'),
             'fungsi_terkait' => $this->request->getPost('fungsi_terkait'),
-            'kepatuhan' => $this->request->getPost('kepatuhan')
+            'kepatuhan' => $this->request->getPost('kepatuhan'),
         ];
-        $this->regulationModel->insertRegulation($data);
-        return redirect()->to('/regulations');
+        $this->regulationModel->createRegulation($data);
+        return redirect()->to('/regulation');
     }
 
     public function edit($id)
     {
-        // Logic for editing regulation
+        $regulation = $this->regulationModel->getRegulationById($id);
+        if (!$regulation) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('Regulation not found');
+        }
+        $data = [
+            'regulation' => $regulation,
+        ];
+        echo view('layouts/adminlte_header');
+        echo view('layouts/sidebar');
+        echo view('admin/regulation_form', $data);
+        echo view('layouts/adminlte_footer');
     }
 
     public function update($id)
     {
-        // Logic for updating regulation
+        $data = [
+            'jenis_peraturan' => $this->request->getPost('jenis_peraturan'),
+            'nama_peraturan' => $this->request->getPost('nama_peraturan'),
+            'fungsi_terkait' => $this->request->getPost('fungsi_terkait'),
+            'kepatuhan' => $this->request->getPost('kepatuhan'),
+        ];
+        $this->regulationModel->updateRegulation($id, $data);
+        return redirect()->to('/regulation');
     }
 
     public function delete($id)
     {
         $this->regulationModel->deleteRegulation($id);
-        return redirect()->to('/regulations');
+        return redirect()->to('/regulation');
     }
 }
