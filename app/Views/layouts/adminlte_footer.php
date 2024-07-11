@@ -1,10 +1,9 @@
-<!-- Main Footer -->
+<!-- adminlte_footer.php -->
+<?php if (uri_string() !== 'login'): ?>
 <footer class="main-footer">
-    <div class="float-right d-none d-sm-inline">
-        Anything you want
-    </div>
     <strong>&copy; 2024 Pertamina EP Cepu.</strong> All rights reserved.
 </footer>
+<?php endif; ?>
 </div>
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

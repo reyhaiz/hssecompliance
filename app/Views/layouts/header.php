@@ -7,10 +7,15 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <nav>
-        <div class="navbar">
-            <a href="/">Home</a>
-            <a href="/login" class="login-btn"><button>Login</button></a>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-left">
+                <a href="/" class="navbar-brand">HSSE Regulations</a>
+                <a href="/" class="nav-link">Home</a>
+            </div>
+            <div class="navbar-right">
+                <a href="/login" class="nav-link login-btn">Login</a>
+            </div>
         </div>
     </nav>
-    <div class="container">
+    <div class="main-container">
