@@ -30,7 +30,7 @@
                     <div class="small-box bg-info">
                         <div class="inner">
                             <h3><?= $totalRegulations ?></h3>
-                            <p>Regulations</p>
+                            <p>Total Regulations</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-stats-bars"></i>
