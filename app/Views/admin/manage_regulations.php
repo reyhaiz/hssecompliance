@@ -11,7 +11,7 @@
             </div>
         </div>
     </section>
-
+    
     <section class="content">
         <div class="container-fluid">
             <div class="card">
@@ -25,7 +25,7 @@
                     <?php if (empty($regulations)): ?>
                         <p>No regulations found.</p>
                     <?php else: ?>
-                        <table class="table table-bordered">
+                        <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -38,12 +38,20 @@
                             <tbody>
                                 <?php foreach ($regulations as $index => $regulation): ?>
                                     <tr onclick="window.location.href='<?= base_url('regulation/detail/'.$regulation->_id) ?>'">
-                                    <td><?= $index + 1 ?></td>
-                                    <td><?= $regulation->jenis_peraturan ?? '' ?></td>
-                                    <td><?= $regulation->nama_peraturan ?? '' ?></td>
-                                    <td><?= $regulation->fungsi_terkait ?? '' ?></td>
-                                    <td><?= $regulation->kepatuhan ?? '' ?></td>
-                                </tr>
+                                        <td><?= $index + 1 ?></td>
+                                        <td><?= esc($regulation->jenis_peraturan) ?? '' ?></td>
+                                        <td><?= esc($regulation->nama_peraturan) ?? '' ?></td>
+                                        <td>
+                                            <?php
+                                            if (is_array($regulation->fungsi_terkait)) {
+                                                echo implode(', ', $regulation->fungsi_terkait);
+                                            } else {
+                                                echo esc($regulation->fungsi_terkait) ?? '';
+                                            }
+                                            ?>
+                                        </td>
+                                        <td><?= esc($regulation->kepatuhan) ?? '' ?></td>
+                                    </tr>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>

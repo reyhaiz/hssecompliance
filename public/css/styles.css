@@ -98,3 +98,45 @@ footer.main-footer {
 .login-card-body {
     padding: 20px;
 }
+
+/* Tagify input styles */
+.tagify {
+    --tag-bg: #4CAF50;
+    --tag-hover: #45a049;
+    --tag-text-color: white;
+    --tag-pad: .3em .5em;
+    --tag-inset-shadow-size: 1.2em;
+    --tag-border-radius: 3px;
+    --tag-max-width: calc(100% - 1em);
+    --tag-remove-bg: #a81919;
+    --tag-remove-btn-size: 1.1em;
+    --tag-remove-btn-bg: transparent;
+    --tag-remove-btn-color: white;
+}
+
+.tagify__tag {
+    background: var(--tag-bg);
+    color: var(--tag-text-color);
+}
+
+.tagify__tag:hover {
+    background: var(--tag-hover);
+}
+
+.tagify__tag__removeBtn {
+    background: var(--tag-remove-btn-bg);
+    color: var(--tag-remove-btn-color);
+}
+
+.tagify__input {
+    margin-top: .5em;
+    width: 100%;
+    border: 1px solid #ddd;
+    padding: .5em;
+}
+
+/* Hover effect for table rows */
+.table-hover tbody tr:hover {
+    background-color: #f5f5f5;
+    cursor: pointer;
+}

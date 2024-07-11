@@ -17,12 +17,26 @@ class RegulationModel
 
     public function getAllRegulations()
     {
-        return $this->collection->find()->toArray();
+        $cursor = $this->collection->find();
+        $regulations = [];
+
+        foreach ($cursor as $regulation) {
+            if (isset($regulation->fungsi_terkait) && $regulation->fungsi_terkait instanceof \MongoDB\Model\BSONArray) {
+                $regulation->fungsi_terkait = $regulation->fungsi_terkait->getArrayCopy();
+            }
+            $regulations[] = $regulation;
+        }
+
+        return $regulations;
     }
 
     public function getRegulationById($id)
     {
-        return $this->collection->findOne(['_id' => new \MongoDB\BSON\ObjectId($id)]);
+        $regulation = $this->collection->findOne(['_id' => new \MongoDB\BSON\ObjectId($id)]);
+        if (isset($regulation->fungsi_terkait) && $regulation->fungsi_terkait instanceof \MongoDB\Model\BSONArray) {
+            $regulation->fungsi_terkait = $regulation->fungsi_terkait->getArrayCopy();
+        }
+        return $regulation;
     }
 
     public function createRegulation($data)
