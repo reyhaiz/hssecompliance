@@ -30,14 +30,14 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+$routes->get('/', 'PublicRegulationController::index');
+$routes->get('/regulation/detail/(:segment)', 'PublicRegulationController::detail/$1');
 $routes->get('/dashboard', 'DashboardController::index');
 $routes->get('/regulations', 'RegulationController::index');
 $routes->get('/regulation/add', 'RegulationController::add');
 $routes->post('/regulation/create', 'RegulationController::create');
 $routes->get('/regulation/edit/(:segment)', 'RegulationController::edit/$1');
 $routes->post('/regulation/update/(:segment)', 'RegulationController::update/$1');
-$routes->get('/regulation/detail/(:segment)', 'RegulationController::detail/$1');
 $routes->get('/regulation/delete/(:segment)', 'RegulationController::delete/$1');
 $routes->get('/login', 'LoginController::index');
 $routes->post('/login/authenticate', 'LoginController::authenticate');
