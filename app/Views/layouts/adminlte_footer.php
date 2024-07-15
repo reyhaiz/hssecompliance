@@ -11,5 +11,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/vendor/adminlte/dist/js/adminlte.min.js"></script>
+<link rel="icon" href="/img/logobungben.png" type="image/png">
 </body>
 </html>

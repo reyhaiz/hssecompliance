@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/vendor/adminlte/dist/css/adminlte.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/styles.css">
+    <link rel="icon" href="/img/logobungben.png" type="image/png">
 </head>
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">

@@ -6,6 +6,7 @@
     <title>HSSE Regulations</title>
     <link rel="stylesheet" href="/css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="/img/logobungben.png" type="image/png">
 </head>
 <body>
     <nav class="navbar">
