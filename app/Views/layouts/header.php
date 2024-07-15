@@ -15,7 +15,8 @@
                 <a href="https://pepc.pertamina.com/">
                     <img src="/img/logopepc.png" alt="Pertamina EP Cepu Logo" class="logo">
                 </a>
-                <a href="/" class="nav-link">Home</a>
+                <a href="/" class="nav-link">Regulations</a>
+                <a href="/about" class="nav-link">About Us</a>
             </div>
             <div class="navbar-right">
                 <a href="/login" class="nav-link login-btn">Login</a>

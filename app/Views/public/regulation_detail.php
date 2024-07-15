@@ -1,7 +1,25 @@
 <?= $this->include('layouts/header') ?>
 
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<style>
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+</style>
+
 <div class="container">
-    <h1>Detail of Regulation</h1>
+    <div class="d-flex align-items-center mb-3">
+        <a href="/" class="btn btn-secondary mr-2">
+            <span class="material-symbols-outlined">
+                arrow_back
+            </span>
+        </a>
+        <h1>Detail of Regulation</h1>
+    </div>
     <table class="table table-bordered regulation-detail-table">
         <tr>
             <th>Jenis Peraturan</th>

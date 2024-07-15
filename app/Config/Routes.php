@@ -42,6 +42,7 @@ $routes->get('/regulation/delete/(:segment)', 'RegulationController::delete/$1')
 $routes->get('/login', 'LoginController::index');
 $routes->post('/login/authenticate', 'LoginController::authenticate');
 $routes->get('/logout', 'LoginController::logout');
+$routes->get('/about', 'PublicRegulationController::about');
 
 /*
  * --------------------------------------------------------------------
