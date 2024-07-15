@@ -214,7 +214,7 @@ footer.main-footer {
 }
 
 .search-button {
-    background-color: #ACC42A;
+    background-color: #ACC42A; /* Mengatur warna search button menjadi warna yang diinginkan */
     color: white;
     border: none;
     padding: 10px 20px;
@@ -228,13 +228,18 @@ footer.main-footer {
     background-color: #9BB324;
 }
 
+/* Styling untuk kursor menjadi hand mode pada view mode buttons */
+.material-symbols-outlined.btn {
+    cursor: pointer;
+}
+
 /* Highlight Active Button */
-.btn.active {
+.material-symbols-outlined.btn.active {
     background-color: #007bff;
     color: white;
 }
 
-.btn:not(.active) {
+.material-symbols-outlined.btn:not(.active) {
     background-color: #6c757d;
     color: white;
 }
