@@ -3,9 +3,12 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
 <div class="container">
-    <h1>List of Regulations</h1>
-    <div class="mb-3">
-        <input type="text" id="search" class="form-control" placeholder="Search regulations..." onkeyup="filterRegulations()">
+    <div class="d-flex align-items-center mb-3">
+        <h1 class="mr-3">List of Regulations</h1>
+        <form action="" method="get" class="d-flex align-items-center">
+            <input type="text" name="search" class="form-control search-input mr-2" placeholder="Search regulations...">
+            <button type="submit" class="btn search-button">Search</button>
+        </form>
     </div>
     <div class="d-flex align-items-center mb-3">
         <span class="mr-2">View Mode:</span>
