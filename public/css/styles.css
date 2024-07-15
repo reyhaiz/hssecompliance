@@ -227,3 +227,14 @@ footer.main-footer {
 .search-button:hover {
     background-color: #9BB324;
 }
+
+/* Highlight Active Button */
+.btn.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn:not(.active) {
+    background-color: #6c757d;
+    color: white;
+}

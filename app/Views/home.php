@@ -12,7 +12,7 @@
     </div>
     <div class="d-flex align-items-center mb-3">
         <span class="mr-2">View Mode:</span>
-        <span id="list-view-button" class="material-symbols-outlined btn btn-primary">
+        <span id="list-view-button" class="material-symbols-outlined btn btn-primary active">
             view_list
         </span>
         <span id="table-view-button" class="material-symbols-outlined btn btn-secondary">
@@ -56,16 +56,16 @@
     document.getElementById('list-view-button').addEventListener('click', function() {
         document.getElementById('list-container').style.display = 'block';
         document.getElementById('table-container').style.display = 'none';
-        document.getElementById('list-view-button').classList.add('btn-primary');
-        document.getElementById('table-view-button').classList.remove('btn-primary');
+        document.getElementById('list-view-button').classList.add('btn-primary', 'active');
+        document.getElementById('table-view-button').classList.remove('btn-primary', 'active');
         document.getElementById('table-view-button').classList.add('btn-secondary');
     });
 
     document.getElementById('table-view-button').addEventListener('click', function() {
         document.getElementById('list-container').style.display = 'none';
         document.getElementById('table-container').style.display = 'block';
-        document.getElementById('table-view-button').classList.add('btn-primary');
-        document.getElementById('list-view-button').classList.remove('btn-primary');
+        document.getElementById('table-view-button').classList.add('btn-primary', 'active');
+        document.getElementById('list-view-button').classList.remove('btn-primary', 'active');
         document.getElementById('list-view-button').classList.add('btn-secondary');
     });
 
