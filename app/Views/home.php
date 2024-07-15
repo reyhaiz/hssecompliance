@@ -24,7 +24,7 @@
         </ul>
     </div>
     <div id="table-container" style="display:none;">
-        <table class="table table-bordered">
+        <table class="table table-bordered home-table">
             <thead>
                 <tr>
                     <th>No</th>
@@ -53,11 +53,17 @@
     document.getElementById('list-view-button').addEventListener('click', function() {
         document.getElementById('list-container').style.display = 'block';
         document.getElementById('table-container').style.display = 'none';
+        document.getElementById('list-view-button').classList.add('btn-primary');
+        document.getElementById('table-view-button').classList.remove('btn-primary');
+        document.getElementById('table-view-button').classList.add('btn-secondary');
     });
 
     document.getElementById('table-view-button').addEventListener('click', function() {
         document.getElementById('list-container').style.display = 'none';
         document.getElementById('table-container').style.display = 'block';
+        document.getElementById('table-view-button').classList.add('btn-primary');
+        document.getElementById('list-view-button').classList.remove('btn-primary');
+        document.getElementById('list-view-button').classList.add('btn-secondary');
     });
 
     function filterRegulations() {

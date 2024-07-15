@@ -172,3 +172,19 @@ footer.main-footer {
 .regulation-detail-table td {
     text-align: left; /* Align the text to the left for all table data cells */
 }
+
+/* Custom styles for table in home page */
+.home-table {
+    border: 1px solid #dee2e6;
+    border-collapse: collapse;
+}
+
+.home-table th, .home-table td {
+    border: 1px solid #dee2e6;
+    padding: 8px;
+}
+
+.home-table th {
+    text-align: left;
+    background-color: #f8f9fa;
+}
