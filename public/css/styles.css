@@ -177,6 +177,7 @@ footer.main-footer {
 .home-table {
     border: 1px solid #dee2e6;
     border-collapse: collapse;
+    width: 100%;
 }
 
 .home-table th, .home-table td {
