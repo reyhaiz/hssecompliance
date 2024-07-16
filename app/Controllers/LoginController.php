@@ -16,9 +16,9 @@ class LoginController extends BaseController
     {
         $session = session();
         $model = new UserModel();
-        $email = $this->request->getVar('email');
-        $password = $this->request->getVar('password');
-        $data = $model->where('email', $email);
+        $email = $this->request->getPost('email');
+        $password = $this->request->getPost('password');
+        $data = $model->getUserByEmail($email);
 
         if ($data) {
             $pass = $data['password'];
@@ -27,6 +27,7 @@ class LoginController extends BaseController
                 $ses_data = [
                     'id' => $data['id'],
                     'email' => $data['email'],
+                    'role' => $data['role'],
                     'logged_in' => TRUE
                 ];
                 $session->set($ses_data);
