@@ -1,5 +1,9 @@
 <?= $this->include('layouts/adminlte_header') ?>
 
+<script>
+    document.title = "Log In"; // Ubah judul halaman hanya di sini
+</script>
+
 <div class="login-box">
     <div class="login-logo">
         <a href="/"><b>Admin</b>LTE</a>
@@ -12,7 +16,7 @@
                 <p class="text-danger"><?= session()->getFlashdata('error') ?></p>
             <?php endif; ?>
             <form action="/login/authenticate" method="post">
-                <div class="input-group mb-3">
+                <div class="input-group mb=3">
                     <input type="email" name="email" class="form-control" placeholder="Email" required>
                     <div class="input-group-append">
                         <div class="input-group-text">
