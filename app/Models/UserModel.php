@@ -2,23 +2,16 @@
 
 namespace App\Models;
 
-use MongoDB\Client;
+use CodeIgniter\Model;
 
-class UserModel
+class UserModel extends Model
 {
-    protected $collection;
-
-    public function __construct()
-    {
-        $config = new \Config\MongoDbConfig();
-        $client =
-        $client = new Client("mongodb://{$config->host}:{$config->port}");
-        $this->collection = $client->{$config->database}->users;
-    }
+    protected $table = 'users';
+    protected $primaryKey = 'id';
+    protected $allowedFields = ['email', 'password'];
 
     public function where($field, $value)
     {
-        $result = $this->collection->findOne([$field => $value]);
-        return $result ? (array) $result : null;
+        return $this->where($field, $value)->first();
     }
 }

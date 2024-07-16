@@ -25,7 +25,7 @@ class LoginController extends BaseController
             $verify_pass = password_verify($password, $pass);
             if ($verify_pass) {
                 $ses_data = [
-                    'id' => (string) $data['_id'],
+                    'id' => $data['id'],
                     'email' => $data['email'],
                     'logged_in' => TRUE
                 ];
