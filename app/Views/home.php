@@ -22,7 +22,7 @@
     <div id="list-container">
         <ul id="regulation-list">
             <?php foreach ($regulations as $regulation): ?>
-                <li><a href="<?= base_url('regulation/detail/' . $regulation->_id) ?>"><?= esc($regulation->nama_peraturan) ?></a></li>
+                <li><a href="<?= base_url('regulation/detail/' . $regulation['id']) ?>"><?= esc($regulation['nama_peraturan']) ?></a></li>
             <?php endforeach; ?>
         </ul>
     </div>
@@ -41,10 +41,18 @@
                 <?php foreach ($regulations as $index => $regulation): ?>
                     <tr>
                         <td><?= $index + 1 ?></td>
-                        <td><?= esc($regulation->jenis_peraturan) ?></td>
-                        <td><a href="<?= base_url('regulation/detail/' . $regulation->_id) ?>"><?= esc($regulation->nama_peraturan) ?></a></td>
-                        <td><?= esc(implode(', ', $regulation->fungsi_terkait)) ?></td>
-                        <td><?= esc($regulation->kepatuhan) ?></td>
+                        <td><?= esc($regulation['jenis_peraturan']) ?></td>
+                        <td><a href="<?= base_url('regulation/detail/' . $regulation['id']) ?>"><?= esc($regulation['nama_peraturan']) ?></a></td>
+                        <td>
+                            <?php
+                            if (is_array($regulation['fungsi_terkait'])) {
+                                echo esc(implode(', ', $regulation['fungsi_terkait']));
+                            } else {
+                                echo esc($regulation['fungsi_terkait']);
+                            }
+                            ?>
+                        </td>
+                        <td><?= esc($regulation['kepatuhan']) ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
