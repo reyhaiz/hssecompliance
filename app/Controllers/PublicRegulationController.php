@@ -15,7 +15,7 @@ class PublicRegulationController extends BaseController
 
     public function index()
     {
-        $regulations = $this->regulationModel->getAllRegulations();
+        $regulations = $this->regulationModel->findAll();
         $data = [
             'regulations' => $regulations,
         ];
@@ -24,7 +24,7 @@ class PublicRegulationController extends BaseController
 
     public function detail($id)
     {
-        $regulation = $this->regulationModel->getRegulationById($id);
+        $regulation = $this->regulationModel->find($id);
         $data = [
             'regulation' => $regulation,
         ];

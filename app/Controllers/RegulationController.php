@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\RegulationModel;
 
-class PublicRegulationController extends BaseController
+class RegulationController extends BaseController
 {
     protected $regulationModel;
 
@@ -15,24 +15,44 @@ class PublicRegulationController extends BaseController
 
     public function index()
     {
-        $regulations = $this->regulationModel->getAllRegulations();
+        $regulations = $this->regulationModel->findAll();
         $data = [
             'regulations' => $regulations,
         ];
-        return view('home', $data);
+        return view('admin/manage_regulations', $data);
     }
 
-    public function detail($id)
+    public function add()
     {
-        $regulation = $this->regulationModel->getRegulationById($id);
+        return view('admin/regulation_form');
+    }
+
+    public function create()
+    {
+        $data = $this->request->getPost();
+        $this->regulationModel->insert($data);
+        return redirect()->to('/regulations');
+    }
+
+    public function edit($id)
+    {
+        $regulation = $this->regulationModel->find($id);
         $data = [
             'regulation' => $regulation,
         ];
-        return view('public/regulation_detail', $data);
+        return view('admin/regulation_form', $data);
     }
 
-    public function about()
+    public function update($id)
     {
-        return view('public/about');
+        $data = $this->request->getPost();
+        $this->regulationModel->update($id, $data);
+        return redirect()->to('/regulations');
+    }
+
+    public function delete($id)
+    {
+        $this->regulationModel->delete($id);
+        return redirect()->to('/regulations');
     }
 }

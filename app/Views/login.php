@@ -16,7 +16,7 @@
                 <p class="text-danger"><?= session()->getFlashdata('error') ?></p>
             <?php endif; ?>
             <form action="/login/authenticate" method="post">
-                <div class="input-group mb=3">
+                <div class="input-group mb-3"> <!-- Ubah mb=3 menjadi mb-3 -->
                     <input type="email" name="email" class="form-control" placeholder="Email" required>
                     <div class="input-group-append">
                         <div class="input-group-text">
@@ -24,7 +24,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="input-group mb-3">
+                <div class="input-group mb-3"> <!-- Tambahkan mb-3 pada div ini -->
                     <input type="password" name="password" class="form-control" placeholder="Password" required>
                     <div class="input-group-append">
                         <div class="input-group-text">

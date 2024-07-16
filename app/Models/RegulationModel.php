@@ -16,29 +16,4 @@ class RegulationModel extends Model
         'analisa_resiko_peraturan_status', 'dampak_finansial', 'dampak_pidana', 
         'keterangan'
     ];
-
-    public function getAllRegulations()
-    {
-        return $this->findAll();
-    }
-
-    public function getRegulationById($id)
-    {
-        return $this->find($id);
-    }
-
-    public function createRegulation($data)
-    {
-        return $this->insert($data);
-    }
-
-    public function updateRegulation($id, $data)
-    {
-        return $this->update($id, $data);
-    }
-
-    public function deleteRegulation($id)
-    {
-        return $this->delete($id);
-    }
 }

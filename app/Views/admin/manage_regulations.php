@@ -37,20 +37,12 @@
                             </thead>
                             <tbody>
                                 <?php foreach ($regulations as $index => $regulation): ?>
-                                    <tr onclick="window.location.href='<?= base_url('regulation/detail/'.$regulation->_id) ?>'">
+                                    <tr>
                                         <td><?= $index + 1 ?></td>
-                                        <td><?= esc($regulation->jenis_peraturan) ?? '' ?></td>
-                                        <td><?= esc($regulation->nama_peraturan) ?? '' ?></td>
-                                        <td>
-                                            <?php
-                                            if (is_array($regulation->fungsi_terkait)) {
-                                                echo implode(', ', $regulation->fungsi_terkait);
-                                            } else {
-                                                echo esc($regulation->fungsi_terkait) ?? '';
-                                            }
-                                            ?>
-                                        </td>
-                                        <td><?= esc($regulation->kepatuhan) ?? '' ?></td>
+                                        <td><?= esc($regulation['jenis_peraturan']) ?></td>
+                                        <td><?= esc($regulation['nama_peraturan']) ?></td>
+                                        <td><?= esc($regulation['fungsi_terkait']) ?></td>
+                                        <td><?= esc($regulation['kepatuhan']) ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
