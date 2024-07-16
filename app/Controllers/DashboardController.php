@@ -15,7 +15,7 @@ class DashboardController extends BaseController
 
     public function index()
     {
-        $regulations = $this->regulationModel->getAllRegulations();
+        $regulations = $this->regulationModel->findAll(); // Gunakan metode findAll
         $data = [
             'totalRegulations' => count($regulations), // Hitung jumlah regulasi
         ];

@@ -22,37 +22,12 @@ class RegulationController extends BaseController
         return view('admin/manage_regulations', $data);
     }
 
-    public function add()
-    {
-        return view('admin/regulation_form');
-    }
-
-    public function create()
-    {
-        $data = $this->request->getPost();
-        $this->regulationModel->insert($data);
-        return redirect()->to('/regulations');
-    }
-
-    public function edit($id)
+    public function detail($id)
     {
         $regulation = $this->regulationModel->find($id);
         $data = [
             'regulation' => $regulation,
         ];
-        return view('admin/regulation_form', $data);
-    }
-
-    public function update($id)
-    {
-        $data = $this->request->getPost();
-        $this->regulationModel->update($id, $data);
-        return redirect()->to('/regulations');
-    }
-
-    public function delete($id)
-    {
-        $this->regulationModel->delete($id);
-        return redirect()->to('/regulations');
+        return view('admin/regulation_detail', $data);
     }
 }

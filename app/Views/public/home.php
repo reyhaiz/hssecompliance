@@ -76,43 +76,6 @@
         document.getElementById('list-view-button').classList.remove('btn-primary', 'active');
         document.getElementById('list-view-button').classList.add('btn-secondary');
     });
-
-    function filterRegulations() {
-        var input, filter, ul, li, a, i, txtValue, table, tr, td, j;
-        input = document.getElementById('search');
-        filter = input.value.toUpperCase();
-        ul = document.getElementById('regulation-list');
-        li = ul.getElementsByTagName('li');
-        table = document.getElementById('regulation-table');
-        tr = table.getElementsByTagName('tr');
-
-        // Filter list view
-        for (i = 0; i < li.length; i++) {
-            a = li[i].getElementsByTagName('a')[0];
-            txtValue = a.textContent || a.innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                li[i].style.display = "";
-            } else {
-                li[i].style.display = "none";
-            }
-        }
-
-        // Filter table view
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName('td');
-            for (j = 0; j < td.length; j++) {
-                if (td[j]) {
-                    txtValue = td[j].textContent || td[j].innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                        break;
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
-            }
-        }
-    }
 </script>
 
 <?= $this->include('layouts/footer') ?>

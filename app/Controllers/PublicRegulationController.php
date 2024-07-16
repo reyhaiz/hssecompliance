@@ -30,9 +30,4 @@ class PublicRegulationController extends BaseController
         ];
         return view('public/regulation_detail', $data);
     }
-
-    public function about()
-    {
-        return view('public/about');
-    }
 }

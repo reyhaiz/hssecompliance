@@ -40,7 +40,7 @@
                                     <tr>
                                         <td><?= $index + 1 ?></td>
                                         <td><?= esc($regulation['jenis_peraturan']) ?></td>
-                                        <td><?= esc($regulation['nama_peraturan']) ?></td>
+                                        <td><a href="<?= base_url('regulation/detail/' . $regulation['id']) ?>"><?= esc($regulation['nama_peraturan']) ?></a></td>
                                         <td><?= esc($regulation['fungsi_terkait']) ?></td>
                                         <td><?= esc($regulation['kepatuhan']) ?></td>
                                     </tr>
