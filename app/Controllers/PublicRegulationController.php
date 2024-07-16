@@ -19,7 +19,7 @@ class PublicRegulationController extends BaseController
         $data = [
             'regulations' => $regulations,
         ];
-        return view('home', $data);
+        return view('public/home', $data);
     }
 
     public function detail($id)
