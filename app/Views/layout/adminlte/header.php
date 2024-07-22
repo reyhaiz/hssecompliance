@@ -15,8 +15,10 @@
                 <a href="https://pepc.pertamina.com/">
                     <img src="https://pepc.pertamina.com/wp-content/uploads/2021/03/logo-pepc-3182x976-transparent.png" alt="Pertamina EP Cepu Logo" class="logo">
                 </a>
-                <a href="/" class="nav-link">Regulations</a>
-                <a href="/about" class="nav-link">About Us</a>
+                <div class="nav-links">
+                    <a href="/" class="nav-link">Regulations</a>
+                    <a href="/about" class="nav-link">About Us</a>
+                </div>
             </div>
             <div class="navbar-right">
                 <a href="/login" class="nav-link login-btn">Login</a>

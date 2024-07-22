@@ -29,19 +29,31 @@ body {
     align-items: center;
 }
 
+.navbar .navbar-left {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .nav-links {
+    display: flex;
+    align-items: center;
+    margin-left: 5rem; /* Geser ke kanan sejauh 5 cm */
+}
+
 .navbar .logo {
     height: 40px;
 }
 
 .navbar .nav-link {
-    margin-right: 1.5rem; /* Adjusted margin */
+    margin-right: 5rem; /* Adjusted margin */
     color: #007bff;
     text-decoration: none;
     font-weight: 500;
 }
 
 .navbar .nav-link:hover {
-    text-decoration: underline;
+    color: black;
+    text-decoration-color: #f2f2f2;
 }
 
 .navbar .login-btn {
@@ -68,31 +80,28 @@ body {
     align-items: center;
     margin-bottom: 1rem;
     margin-left: 1rem;
-    border-radius: 1.5rem;
-    overflow: hidden;
 }
 
 .search-input {
-    border-radius: 1.5rem 0 0 1.5rem;
+    border-radius: 1.5rem;
     border: 1px solid #ddd;
     padding: 0.375rem 0.75rem;
-    border-right: none;
     height: 38px; /* Set the height of input */
     font-size: 16px;
     line-height: 1.5;
+    flex-grow: 1; /* Allow search box to take up remaining space */
+    margin-right: 10px; /* Add space between search box and button */
 }
 
 .search-button {
     background-color: #b4d455;
     color: #fff;
     border: 1px solid #b4d455;
-    border-radius: 0 1.5rem 1.5rem 0;
+    border-radius: 1.5rem;
     padding: 0.375rem 1rem;
     height: 38px; /* Set the height of button */
     font-size: 16px;
     line-height: 1.5;
-    display: flex;
-    align-items: center;
 }
 
 .search-button:hover {
