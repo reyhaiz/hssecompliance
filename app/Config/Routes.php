@@ -2,19 +2,12 @@
 
 namespace Config;
 
-// Create a new instance of our RouteCollection class.
 $routes = Services::routes();
 
-// Load the system's routing file first, so that the app and ENVIRONMENT can override as needed.
 if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
     require SYSTEMPATH . 'Config/Routes.php';
 }
 
-/*
- * --------------------------------------------------------------------
- * Router Setup
- * --------------------------------------------------------------------
- */
 $routes->setDefaultNamespace('App\Controllers');
 $routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
@@ -22,42 +15,24 @@ $routes->setTranslateURIDashes(false);
 $routes->set404Override();
 $routes->setAutoRoute(true);
 
-/*
- * --------------------------------------------------------------------
- * Route Definitions
- * --------------------------------------------------------------------
- */
-
-// We get a performance increase by specifying the default
-// route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
-$routes->get('dashboard', 'DashboardController::index');
-$routes->get('regulations', 'RegulationController::index');
-$routes->get('/regulation/detail/(:num)', 'RegulationController::detail/$1');
-$routes->get('/regulation/detail/(:num)', 'PublicRegulationController::detail/$1');
-$routes->get('regulation/add', 'RegulationController::add');
-$routes->post('regulation/create', 'RegulationController::create');
-$routes->get('regulation/edit/(:num)', 'RegulationController::edit/$1');
-$routes->post('regulation/update/(:num)', 'RegulationController::update/$1');
-$routes->get('regulation/delete/(:num)', 'RegulationController::delete/$1');
-$routes->get('login', 'LoginController::index');
-$routes->post('login/authenticate', 'LoginController::authenticate');
-$routes->get('logout', 'LoginController::logout');
-$routes->get('about', 'PublicRegulationController::about');
-
-/*
- * --------------------------------------------------------------------
- * Additional Routing
- * --------------------------------------------------------------------
- *
- * There will often be times that you need additional routing and you
- * need it to be able to override any defaults in this file. Environment
- * based routes are one such time. require() additional route files here
- * to make that happen.
- *
- * You will have access to the $routes object within that file without
- * needing to reload it.
- */
-if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
-    require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
-}
+$routes->get('home/detail/(:num)', 'Home::detail/$1');
+$routes->get('login', 'Login::index');
+$routes->post('login/authenticate', 'Login::authenticate');
+$routes->get('login/forgot_password', 'Login::forgot_password');
+$routes->get('admin/dashboard', 'Admin::dashboard');
+$routes->get('admin/manage_regulation', 'Admin::manage_regulation');
+$routes->get('admin/add_regulation', 'Admin::add_regulation');
+$routes->post('admin/save_regulation', 'Admin::save_regulation');
+$routes->get('admin/edit_regulation/(:num)', 'Admin::edit_regulation/$1');
+$routes->post('admin/update_regulation', 'Admin::update_regulation');
+$routes->get('admin/delete_regulation/(:num)', 'Admin::delete_regulation/$1');
+$routes->get('admin/detail_regulation/(:num)', 'Admin::detail_regulation/$1');
+$routes->get('superadmin/dashboard', 'SuperAdmin::dashboard');
+$routes->get('superadmin/manage_admin', 'SuperAdmin::manage_admin');
+$routes->get('superadmin/add_admin', 'SuperAdmin::add_admin');
+$routes->post('superadmin/save_admin', 'SuperAdmin::save_admin');
+$routes->get('superadmin/edit_admin/(:num)', 'SuperAdmin::edit_admin/$1');
+$routes->post('superadmin/update_admin', 'SuperAdmin::update_admin');
+$routes->get('superadmin/delete_admin/(:num)', 'SuperAdmin::delete_admin/$1');
+$routes->get('superadmin/profile', 'SuperAdmin::profile');

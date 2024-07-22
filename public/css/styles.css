@@ -1,245 +1,186 @@
-/* Mengatur layout dasar */
-html, body {
-    width: 100%;
-    overflow-x: hidden;
+/* Global Styles */
+body {
+    font-family: 'Quicksand', sans-serif;
     margin: 0;
     padding: 0;
-    font-family: 'Quicksand', sans-serif; /* Menambahkan font Quicksand */
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-.main-container {
-    flex: 1;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-.navbar {
-    background-color: white; /* Mengubah warna latar belakang menjadi putih */
-    color: black; /* Mengubah warna teks menjadi hitam */
-    padding: 14px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 2px solid #ccc; /* Menambahkan border bawah */
-}
-
-.navbar-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
-
-.navbar-left, .navbar-right {
-    display: flex;
-    align-items: center;
-}
-
-.logo {
-    height: 50px; /* Menyesuaikan ukuran logo */
-    margin-right: 10px; /* Memberikan jarak antara logo dan teks */
-}
-
-.navbar-brand {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: black; /* Mengubah warna teks menjadi hitam */
-    text-decoration: none;
-}
-
-.nav-link {
-    color: black; /* Mengubah warna link menjadi hitam */
-    text-decoration: none;
-    padding: 14px 20px;
-}
-
-.nav-link:hover {
-    background-color: #ddd;
-    color: black;
-}
-
-.login-btn {
-    background-color: #007bff; /* Mengubah warna button menjadi biru */
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    text-decoration: none;
-    border-radius: 4px;
-}
-
-.login-btn:hover {
-    background-color: #0056b3;
-}
-
-footer {
-    background-color: white; /* Mengubah warna latar belakang menjadi putih */
-    color: black; /* Mengubah warna teks menjadi hitam */
-    text-align: center;
-    padding: 10px 0;
-    height: 56px; 
-    width: 100%; 
-    position: relative; 
-    bottom: 0; 
-    border-top: 2px solid #ccc; /* Menambahkan border atas */
-}
-
-footer.main-footer {
-    position: relative;
-    bottom: 0;
-    width: 100%;
-}
-
-/* New styles for centering the login box */
-.login-box {
-    width: 360px;
-    margin: 7% auto;
-    padding-top: 50px;
-}
-
-.card {
-    margin: 0 auto;
-}
-
-.login-card-body {
-    padding: 20px;
-}
-
-/* Tagify input styles */
-.tagify {
-    --tag-bg: #4CAF50;
-    --tag-hover: #45a049;
-    --tag-text-color: white;
-    --tag-pad: .3em .5em;
-    --tag-inset-shadow-size: 1.2em;
-    --tag-border-radius: 3px;
-    --tag-max-width: calc(100% - 1em);
-    --tag-remove-bg: #a81919;
-    --tag-remove-btn-size: 1.1em;
-    --tag-remove-btn-bg: transparent;
-    --tag-remove-btn-color: white;
-}
-
-.tagify__tag {
-    background: var(--tag-bg);
-    color: var(--tag-text-color);
-}
-
-.tagify__tag:hover {
-    background: var(--tag-hover);
-}
-
-.tagify__tag__removeBtn {
-    background: var(--tag-remove-btn-bg);
-    color: var(--tag-remove-btn-color);
-}
-
-.tagify__input {
-    margin-top: .5em;
-    width: 100%;
-    border: 1px solid #ddd;
-    padding: .5em;
-}
-
-/* Hover effect for table rows */
-.table-hover tbody tr:hover {
-    background-color: #f5f5f5;
-    cursor: pointer;
-}
-
-/* Custom styles for regulation detail table */
-.regulation-detail-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.regulation-detail-table th, .regulation-detail-table td {
-    border: 1px solid #dee2e6;
-    padding: 8px;
-}
-
-.regulation-detail-table th {
-    text-align: left;
     background-color: #f8f9fa;
 }
 
-.regulation-detail-table td {
-    text-align: left; /* Align the text to the left for all table data cells */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 0;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Custom styles for table in home page */
+/* Navbar Styles */
+.navbar {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 0.5rem 1rem;
+}
+
+.navbar .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .logo {
+    height: 40px;
+}
+
+.navbar .nav-link {
+    margin-right: 1.5rem; /* Adjusted margin */
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.navbar .nav-link:hover {
+    text-decoration: underline;
+}
+
+.navbar .login-btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.25rem;
+    text-decoration: none;
+}
+
+.navbar .login-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Main Container Styles */
+.main-container {
+    padding: 1rem;
+    text-align: left; /* Align left */
+}
+
+/* Search Form Styles */
+.search-form {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    border-radius: 1.5rem;
+    overflow: hidden;
+}
+
+.search-input {
+    border-radius: 1.5rem 0 0 1.5rem;
+    border: 1px solid #ddd;
+    padding: 0.375rem 0.75rem;
+    border-right: none;
+    height: 38px; /* Set the height of input */
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.search-button {
+    background-color: #b4d455;
+    color: #fff;
+    border: 1px solid #b4d455;
+    border-radius: 0 1.5rem 1.5rem 0;
+    padding: 0.375rem 1rem;
+    height: 38px; /* Set the height of button */
+    font-size: 16px;
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+}
+
+.search-button:hover {
+    background-color: #9bb644;
+}
+
+/* Table Styles */
 .home-table {
-    border: 1px solid #dee2e6;
-    border-collapse: collapse;
     width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
 }
 
 .home-table th, .home-table td {
-    border: 1px solid #dee2e6;
+    border: 1px solid #ddd;
     padding: 8px;
 }
 
 .home-table th {
+    background-color: #f2f2f2;
     text-align: left;
-    background-color: #f8f9fa;
 }
 
-/* Flexbox styles for search bar */
-.d-flex {
+.home-table td a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.home-table td a:hover {
+    text-decoration: underline;
+}
+
+/* View Mode Button Styles */
+.material-symbols-outlined {
+    cursor: pointer;
+    font-size: 24px;
+}
+
+#list-container, #table-container {
+    margin-top: 1rem;
+}
+
+.btn-view-mode {
+    margin-left: 0.5rem;
+}
+
+.btn-view-mode.active {
+    color: #fff;
+    background-color: #007bff;
+}
+
+/* Footer Styles */
+.main-footer {
+    text-align: center;
+    padding: 0.5rem 0;
+    background-color: #f8f9fa;
+    border-top: 1px solid #e0e0e0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
     display: flex;
+    justify-content: center;
     align-items: center;
 }
 
-.mr-2 {
-    margin-right: 0.5rem;
+.main-footer p {
+    margin: 0;
+    color: #6c757d;
+    font-size: 0.875rem;
 }
 
-.mr-3 {
-    margin-right: 1rem;
+/* Align content left */
+h1 {
+    text-align: left;
 }
 
-/* Styling for search box and button */
-.search-input {
-    border-radius: 25px;
-    border: 1px solid #ddd;
-    padding: 10px;
-    width: 300px;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12);
+.list-container {
+    text-align: left;
+    padding: 0 1rem;
 }
 
-.search-button {
-    background-color: #ACC42A; /* Mengatur warna search button menjadi warna yang diinginkan */
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-left: 10px;
+/* Table fit to window */
+.table-container, .list-container {
+    width: 100%;
 }
 
-.search-button:hover {
-    background-color: #9BB324;
-}
-
-/* Styling untuk kursor menjadi hand mode pada view mode buttons */
-.material-symbols-outlined.btn {
-    cursor: pointer;
-}
-
-/* Highlight Active Button */
-.material-symbols-outlined.btn.active {
-    background-color: #007bff;
-    color: white;
-}
-
-.material-symbols-outlined.btn:not(.active) {
-    background-color: #6c757d;
-    color: white;
+.table-container table {
+    width: 100%;
+    table-layout: auto;
 }

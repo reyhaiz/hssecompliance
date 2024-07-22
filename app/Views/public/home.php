@@ -1,32 +1,33 @@
-<?= $this->include('layouts/header') ?>
+<?= $this->include('layout/adminlte/header') ?>
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+<link rel="stylesheet" href="<?= base_url('css/styles.css') ?>">
 
-<div class="container">
-    <div class="d-flex align-items-center mb-3">
+<div class="main-container">
+    <div class="d-flex align-items-center justify-content-between mb-3">
         <h1 class="mr-3">List of Regulations</h1>
-        <form action="" method="get" class="d-flex align-items-center">
-            <input type="text" name="search" class="form-control search-input mr-2" placeholder="Search regulations...">
+        <form action="" method="get" class="search-form d-flex align-items-center">
+            <input type="text" name="search" class="form-control search-input" placeholder="Search regulations...">
             <button type="submit" class="btn search-button">Search</button>
         </form>
     </div>
     <div class="d-flex align-items-center mb-3">
         <span class="mr-2">View Mode:</span>
-        <span id="list-view-button" class="material-symbols-outlined btn btn-primary active">
+        <span id="list-view-button" class="material-symbols-outlined btn-view-mode active">
             view_list
         </span>
-        <span id="table-view-button" class="material-symbols-outlined btn btn-secondary">
+        <span id="table-view-button" class="material-symbols-outlined btn-view-mode">
             data_table
         </span>
     </div>
-    <div id="list-container">
+    <div id="list-container" class="list-container">
         <ul id="regulation-list">
             <?php foreach ($regulations as $regulation): ?>
                 <li><a href="<?= base_url('regulation/detail/' . $regulation['id']) ?>"><?= esc($regulation['nama_peraturan']) ?></a></li>
             <?php endforeach; ?>
         </ul>
     </div>
-    <div id="table-container" style="display:none;">
+    <div id="table-container" class="table-container" style="display:none;">
         <table class="table table-bordered home-table">
             <thead>
                 <tr>
@@ -39,7 +40,7 @@
             </thead>
             <tbody id="regulation-table">
                 <?php foreach ($regulations as $index => $regulation): ?>
-                    <tr>
+                    <tr onclick="window.location='<?= base_url('regulation/detail/' . $regulation['id']) ?>'">
                         <td><?= $index + 1 ?></td>
                         <td><?= esc($regulation['jenis_peraturan']) ?></td>
                         <td><a href="<?= base_url('regulation/detail/' . $regulation['id']) ?>"><?= esc($regulation['nama_peraturan']) ?></a></td>
@@ -78,4 +79,4 @@
     });
 </script>
 
-<?= $this->include('layouts/footer') ?>
+<?= $this->include('layout/adminlte/footer') ?>

@@ -6,14 +6,12 @@ use CodeIgniter\Model;
 
 class RegulationModel extends Model
 {
-    protected $table = 'regulations';
+    protected $table = 'regulasi';
     protected $primaryKey = 'id';
     protected $allowedFields = [
-        'jenis_peraturan', 'nama_peraturan', 'isi_peraturan', 
-        'fungsi_terkait', 'kritikal_point', 'kepatuhan', 
-        'instansi_yang_mengeluarkan', 'analisa_resiko_peraturan_uraian', 
-        'analisa_resiko_peraturan_kategori', 'analisa_resiko_peraturan_skor', 
-        'analisa_resiko_peraturan_status', 'dampak_finansial', 'dampak_pidana', 
-        'keterangan'
+        'jenis_peraturan', 'nama_peraturan', 'fungsi_terkait', 'kepatuhan',
+        'isi_peraturan', 'poin_kritis', 'instansi_penerbit',
+        'analisis_risiko_uraian', 'analisis_risiko_kategori', 'analisis_risiko_skor',
+        'analisis_peraturan_status', 'dampak_finansial', 'dampak_pidana', 'keterangan'
     ];
 }

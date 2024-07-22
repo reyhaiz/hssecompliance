@@ -2,10 +2,21 @@
 
 namespace App\Controllers;
 
+use App\Models\RegulationModel;
+
 class Home extends BaseController
 {
-    public function index(): string
+    public function index()
     {
-        return view('home');
+        $model = new RegulationModel();
+        $data['regulations'] = $model->findAll();
+        return view('public/home', $data);
+    }
+
+    public function detail($id)
+    {
+        $model = new RegulationModel();
+        $data['regulation'] = $model->find($id);
+        return view('public/detail_regulation', $data);
     }
 }
