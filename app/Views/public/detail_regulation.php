@@ -1,12 +1,38 @@
-<?= $this->include('public/header') ?>
+<?= $this->include('layout/adminlte/header') ?>
 
-<div class="container">
-    <h1>Detail of Regulation</h1>
-    <table class="table table-bordered">
-        <tr>
-            <th>No</th>
-            <td><?= esc($regulation['id']) ?></td>
-        </tr>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+<style>
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+.back-button {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+  margin-bottom: 20px;
+}
+
+.back-button span {
+  font-size: 24px;
+  margin-right: 5px;
+}
+</style>
+
+<div class="main-container">
+    <div class="d-flex align-items-center">
+        <a href="/" class="back-button">
+            <span class="material-symbols-outlined">arrow_back</span>
+            Back
+        </a>
+        <h1 class="ml-3">Detail Regulation</h1>
+    </div>
+    <table class="detail-table">
         <tr>
             <th>Jenis Peraturan</th>
             <td><?= esc($regulation['jenis_peraturan']) ?></td>
@@ -36,19 +62,19 @@
             <td><?= esc($regulation['instansi_penerbit']) ?></td>
         </tr>
         <tr>
-            <th>Analisis Risiko (Uraian)</th>
+            <th>Analisis Risiko Uraian</th>
             <td><?= esc($regulation['analisis_risiko_uraian']) ?></td>
         </tr>
         <tr>
-            <th>Analisis Risiko (Kategori)</th>
+            <th>Analisis Risiko Kategori</th>
             <td><?= esc($regulation['analisis_risiko_kategori']) ?></td>
         </tr>
         <tr>
-            <th>Analisis Risiko (Skor)</th>
+            <th>Analisis Risiko Skor</th>
             <td><?= esc($regulation['analisis_risiko_skor']) ?></td>
         </tr>
         <tr>
-            <th>Analisis Peraturan (Status)</th>
+            <th>Analisis Peraturan Status</th>
             <td><?= esc($regulation['analisis_peraturan_status']) ?></td>
         </tr>
         <tr>
@@ -64,7 +90,6 @@
             <td><?= esc($regulation['keterangan']) ?></td>
         </tr>
     </table>
-    <a href="<?= base_url() ?>" class="btn btn-secondary">Back</a>
 </div>
 
-<?= $this->include('public/footer') ?>
+<?= $this->include('layout/adminlte/footer') ?>

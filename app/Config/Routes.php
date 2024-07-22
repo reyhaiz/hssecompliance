@@ -15,8 +15,8 @@ $routes->setTranslateURIDashes(false);
 $routes->set404Override();
 $routes->setAutoRoute(true);
 
-$routes->get('/', 'Home::index');
-$routes->get('home/detail/(:num)', 'Home::detail/$1');
+$routes->get('/', 'PublicRegulationController::index');
+$routes->get('regulation/detail/(:num)', 'PublicRegulationController::detail/$1');
 $routes->get('login', 'Login::index');
 $routes->post('login/authenticate', 'Login::authenticate');
 $routes->get('login/forgot_password', 'Login::forgot_password');

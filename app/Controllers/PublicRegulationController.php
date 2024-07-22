@@ -25,9 +25,12 @@ class PublicRegulationController extends BaseController
     public function detail($id)
     {
         $regulation = $this->regulationModel->find($id);
+        if (!$regulation) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('Regulation not found');
+        }
         $data = [
             'regulation' => $regulation,
         ];
-        return view('public/regulation_detail', $data);
+        return view('public/detail_regulation', $data);
     }
 }
