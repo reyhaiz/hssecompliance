@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Controllers\BaseController;
 use App\Models\RegulationModel;
 
 class PublicRegulationController extends BaseController
@@ -25,12 +26,14 @@ class PublicRegulationController extends BaseController
     public function detail($id)
     {
         $regulation = $this->regulationModel->find($id);
-        if (!$regulation) {
-            throw new \CodeIgniter\Exceptions\PageNotFoundException('Regulation not found');
-        }
         $data = [
             'regulation' => $regulation,
         ];
         return view('public/detail_regulation', $data);
+    }
+
+    public function about()
+    {
+        return view('public/about');
     }
 }

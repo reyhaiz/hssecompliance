@@ -9,16 +9,6 @@ body {
     min-height: 100vh;
 }
 
-.container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 2rem 0;
-    background-color: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
 /* Navbar Styles */
 .navbar {
     background-color: #f8f9fa;
@@ -212,4 +202,22 @@ h1 {
 .detail-table th {
     background-color: #f2f2f2;
     text-align: left;
+}
+
+/* About Content Styles */
+.about-content {
+    padding: 20px;
+}
+
+.about-content img {
+    max-width: 50%;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px; /* Gambar di tengah dan beri margin bawah */
+}
+
+.about-content p {
+    text-align: justify;
+    line-height: 1.6;
+    padding: 0 10px; /* Tambahkan padding pada tulisan */
 }
