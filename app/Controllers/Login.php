@@ -3,8 +3,9 @@
 namespace App\Controllers;
 
 use App\Models\UserModel;
+use CodeIgniter\Controller;
 
-class Login extends BaseController
+class Login extends Controller
 {
     public function index()
     {
@@ -13,28 +14,35 @@ class Login extends BaseController
 
     public function authenticate()
     {
-        $session = session();
-        $model = new UserModel();
-        $email = $this->request->getVar('email');
-        $password = md5($this->request->getVar('password'));
-        $data = $model->where('email', $email)->where('kata_sandi', $password)->first();
-        if($data){
-            $session->set([
-                'id' => $data['id'],
-                'nama' => $data['nama'],
-                'email' => $data['email'],
-                'peran' => $data['peran'],
-                'isLoggedIn' => TRUE
-            ]);
-            return redirect()->to(base_url($data['peran'].'/dashboard'));
-        } else {
-            $session->setFlashdata('msg', 'Wrong Email or Password');
-            return redirect()->to(base_url('login'));
-        }
+        // Logika autentikasi
     }
 
     public function forgot_password()
     {
         return view('login/forgot_password');
+    }
+
+    public function send_reset_link()
+    {
+        $session = session();
+        $email = $this->request->getPost('email');
+        
+        // Cek apakah email ada di database
+        $model = new UserModel();
+        $data = $model->where('email', $email)->first();
+        
+        if($data){
+            // Simpan permintaan reset password ke database
+            $updateData = [
+                'reset_requested' => true
+            ];
+            $model->update($data['id'], $updateData);
+
+            $session->setFlashdata('msg', 'Permintaan reset kata sandi telah berhasil. Silakan periksa email Anda.');
+        } else {
+            $session->setFlashdata('msg', 'Email tidak ditemukan. Hubungi super admin untuk mendaftarkan akun Anda.');
+        }
+
+        return redirect()->to('login/forgot_password');
     }
 }

@@ -20,6 +20,7 @@ $routes->get('regulation/detail/(:num)', 'PublicRegulationController::detail/$1'
 $routes->get('login', 'Login::index');
 $routes->post('login/authenticate', 'Login::authenticate');
 $routes->get('login/forgot_password', 'Login::forgot_password');
+$routes->post('login/send_reset_link', 'Login::send_reset_link');
 $routes->get('admin/dashboard', 'Admin::dashboard');
 $routes->get('admin/manage_regulation', 'Admin::manage_regulation');
 $routes->get('admin/add_regulation', 'Admin::add_regulation');
