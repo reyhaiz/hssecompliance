@@ -14,7 +14,41 @@ class Login extends Controller
 
     public function authenticate()
     {
-        // Logika autentikasi
+        $session = session();
+        $model = new UserModel();
+        
+        $email = $this->request->getPost('email');
+        $password = $this->request->getPost('password');
+        
+        $data = $model->where('email', $email)->first();
+        
+        if ($data) {
+            $pass = $data['kata_sandi'];
+            $authenticatePassword = password_verify($password, $pass);
+            if ($authenticatePassword) {
+                $ses_data = [
+                    'id' => $data['id'],
+                    'nama' => $data['nama'],
+                    'email' => $data['email'],
+                    'peran' => $data['peran'],
+                    'logged_in' => TRUE
+                ];
+                $session->set($ses_data);
+                
+                // Redirect based on role
+                if ($data['peran'] == 'superadmin') {
+                    return redirect()->to('/superadmin/dashboard');
+                } else {
+                    return redirect()->to('/admin/dashboard');
+                }
+            } else {
+                $session->setFlashdata('msg', 'Wrong Password');
+                return redirect()->to('/login');
+            }
+        } else {
+            $session->setFlashdata('msg', 'Email not Found');
+            return redirect()->to('/login');
+        }
     }
 
     public function forgot_password()
@@ -31,7 +65,7 @@ class Login extends Controller
         $model = new UserModel();
         $data = $model->where('email', $email)->first();
         
-        if($data){
+        if ($data) {
             // Simpan permintaan reset password ke database
             $updateData = [
                 'reset_requested' => true
@@ -44,5 +78,11 @@ class Login extends Controller
         }
 
         return redirect()->to('login/forgot_password');
+    }
+
+    public function logout()
+    {
+        session()->destroy();
+        return redirect()->to(base_url('/'));
     }
 }

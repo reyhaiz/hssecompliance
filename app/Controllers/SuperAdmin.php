@@ -3,9 +3,17 @@
 namespace App\Controllers;
 
 use App\Models\UserModel;
+use CodeIgniter\Controller;
 
-class SuperAdmin extends BaseController
+class SuperAdmin extends Controller
 {
+    protected $userModel;
+
+    public function __construct()
+    {
+        $this->userModel = new UserModel();
+    }
+
     public function dashboard()
     {
         return view('superadmin/dashboard');
@@ -13,8 +21,7 @@ class SuperAdmin extends BaseController
 
     public function manage_admin()
     {
-        $model = new UserModel();
-        $data['admins'] = $model->where('peran', 'admin')->findAll();
+        $data['admins'] = $this->userModel->where('peran', 'admin')->findAll();
         return view('superadmin/manage_admin', $data);
     }
 
@@ -25,43 +32,52 @@ class SuperAdmin extends BaseController
 
     public function save_admin()
     {
-        $model = new UserModel();
         $data = [
-            'nama' => $this->request->getVar('nama'),
-            'email' => $this->request->getVar('email'),
-            'kata_sandi' => md5($this->request->getVar('kata_sandi')),
+            'nama' => $this->request->getPost('nama'),
+            'email' => $this->request->getPost('email'),
+            'kata_sandi' => password_hash($this->request->getPost('kata_sandi'), PASSWORD_BCRYPT),
             'peran' => 'admin',
-            'foto_profil' => $this->request->getVar('foto_profil')
         ];
-        $model->insert($data);
+
+        $this->userModel->save($data);
         return redirect()->to(base_url('superadmin/manage_admin'));
     }
 
     public function edit_admin($id)
     {
-        $model = new UserModel();
-        $data['admin'] = $model->find($id);
-        return view('superadmin/add_admin', $data);
+        $data['admin'] = $this->userModel->find($id);
+        return view('superadmin/edit_admin', $data);
     }
 
     public function update_admin()
     {
-        $model = new UserModel();
-        $id = $this->request->getVar('id');
+        $id = $this->request->getPost('id');
         $data = [
-            'nama' => $this->request->getVar('nama'),
-            'email' => $this->request->getVar('email'),
-            'kata_sandi' => md5($this->request->getVar('kata_sandi')),
-            'foto_profil' => $this->request->getVar('foto_profil')
+            'nama' => $this->request->getPost('nama'),
+            'email' => $this->request->getPost('email'),
         ];
-        $model->update($id, $data);
+
+        if ($this->request->getPost('kata_sandi')) {
+            $data['kata_sandi'] = password_hash($this->request->getPost('kata_sandi'), PASSWORD_BCRYPT);
+        }
+
+        $this->userModel->update($id, $data);
         return redirect()->to(base_url('superadmin/manage_admin'));
     }
 
     public function delete_admin($id)
     {
-        $model = new UserModel();
-        $model->delete($id);
+        $this->userModel->delete($id);
         return redirect()->to(base_url('superadmin/manage_admin'));
+    }
+
+    public function profile()
+    {
+        return view('superadmin/profile');
+    }
+
+    public function reset_password()
+    {
+        return view('superadmin/reset_password');
     }
 }
