@@ -221,9 +221,3 @@ h1 {
     line-height: 1.6;
     padding: 0 10px; /* Tambahkan padding pada tulisan */
 }
-
-/* Highlight active menu */
-.nav-sidebar .nav-link.active {
-    background-color: #007bff;
-    color: #fff;
-}
