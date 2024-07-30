@@ -31,6 +31,7 @@
             <!-- Main row -->
             <div class="row">
                 <div class="col-12">
+                    <a href="<?= base_url('admin/add_regulation') ?>" class="btn btn-primary mb-3">Add Regulation</a>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
