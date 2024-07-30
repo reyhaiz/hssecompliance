@@ -34,23 +34,44 @@
                     <form action="<?= base_url('admin/save_regulation') ?>" method="post">
                         <div class="form-group">
                             <label for="jenis_peraturan">Jenis Peraturan</label>
-                            <input type="text" class="form-control" id="jenis_peraturan" name="jenis_peraturan">
+                            <select class="form-control" id="jenis_peraturan" name="jenis_peraturan">
+                                <option value="Undang-Undang">Undang-Undang</option>
+                                <option value="Peraturan Pemerintah">Peraturan Pemerintah</option>
+                                <option value="Peraturan Presiden & Menteri">Peraturan Presiden & Menteri</option>
+                                <option value="Keputusan Presiden Menteri">Keputusan Presiden Menteri</option>
+                                <option value="Persyaratan Lainnya">Persyaratan Lainnya</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="nama_peraturan">Nama Peraturan</label>
-                            <input type="text" class="form-control" id="nama_peraturan" name="nama_peraturan">
+                            <input type="text" class="form-control" id="nama_peraturan" name="nama_peraturan" maxlength="264">
                         </div>
                         <div class="form-group">
                             <label for="fungsi_terkait">Fungsi Terkait</label>
-                            <input type="text" class="form-control" id="fungsi_terkait" name="fungsi_terkait">
+                            <div class="checkbox">
+                                <label><input type="checkbox" name="fungsi_terkait[]" value="EP"> EP</label>
+                                <label><input type="checkbox" name="fungsi_terkait[]" value="WOWS"> WOWS</label>
+                                <label><input type="checkbox" name="fungsi_terkait[]" value="PO"> PO</label>
+                                <label><input type="checkbox" name="fungsi_terkait[]" value="RAM"> RAM</label>
+                                <label><input type="checkbox" name="fungsi_terkait[]" value="LR"> LR</label>
+                                <label><input type="checkbox" name="fungsi_terkait[]" value="HSSE"> HSSE</label>
+                                <label><input type="checkbox" name="fungsi_terkait[]" value="SCM"> SCM</label>
+                                <label><input type="checkbox" name="fungsi_terkait[]" value="Finance"> Finance</label>
+                                <label><input type="checkbox" name="fungsi_terkait[]" value="HC"> HC</label>
+                                <label><input type="checkbox" name="fungsi_terkait[]" value="ICT"> ICT</label>
+                                <label><input type="checkbox" name="fungsi_terkait[]" value="Semua Fungsi"> Semua Fungsi</label>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="kepatuhan">Kepatuhan</label>
-                            <input type="text" class="form-control" id="kepatuhan" name="kepatuhan">
+                            <select class="form-control" id="kepatuhan" name="kepatuhan">
+                                <option value="Ya">Ya</option>
+                                <option value="Tidak">Tidak</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="isi_peraturan">Isi Peraturan</label>
-                            <textarea class="form-control" id="isi_peraturan" name="isi_peraturan"></textarea>
+                            <textarea class="form-control" id="isi_peraturan" name="isi_peraturan" maxlength="1000"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="poin_kritis">Poin Kritis</label>
@@ -58,35 +79,52 @@
                         </div>
                         <div class="form-group">
                             <label for="instansi_penerbit">Instansi Penerbit</label>
-                            <input type="text" class="form-control" id="instansi_penerbit" name="instansi_penerbit">
+                            <input type="text" class="form-control" id="instansi_penerbit" name="instansi_penerbit" maxlength="200">
                         </div>
                         <div class="form-group">
                             <label for="analisis_risiko_uraian">Analisis Risiko Uraian</label>
-                            <textarea class="form-control" id="analisis_risiko_uraian" name="analisis_risiko_uraian"></textarea>
+                            <textarea class="form-control" id="analisis_risiko_uraian" name="analisis_risiko_uraian" maxlength="600"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="analisis_risiko_kategori">Analisis Risiko Kategori</label>
-                            <input type="text" class="form-control" id="analisis_risiko_kategori" name="analisis_risiko_kategori">
+                            <select class="form-control" id="analisis_risiko_kategori" name="analisis_risiko_kategori">
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="E">E</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="analisis_risiko_skor">Analisis Risiko Skor</label>
-                            <input type="text" class="form-control" id="analisis_risiko_skor" name="analisis_risiko_skor">
+                            <select class="form-control" id="analisis_risiko_skor" name="analisis_risiko_skor">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="analisis_peraturan_status">Analisis Peraturan Status</label>
-                            <input type="text" class="form-control" id="analisis_peraturan_status" name="analisis_peraturan_status">
+                            <select class="form-control" id="analisis_peraturan_status" name="analisis_peraturan_status">
+                                <option value="R">R</option>
+                                <option value="S">S</option>
+                                <option value="T">T</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="dampak_finansial">Dampak Finansial</label>
-                            <input type="text" class="form-control" id="dampak_finansial" name="dampak_finansial">
+                            <input type="text" class="form-control" id="dampak_finansial" name="dampak_finansial" maxlength="200">
                         </div>
                         <div class="form-group">
                             <label for="dampak_pidana">Dampak Pidana</label>
-                            <input type="text" class="form-control" id="dampak_pidana" name="dampak_pidana">
+                            <input type="text" class="form-control" id="dampak_pidana" name="dampak_pidana" maxlength="200">
                         </div>
                         <div class="form-group">
                             <label for="keterangan">Keterangan</label>
-                            <textarea class="form-control" id="keterangan" name="keterangan"></textarea>
+                            <textarea class="form-control" id="keterangan" name="keterangan" maxlength="400"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Save</button>
                     </form>

@@ -28,22 +28,21 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <!-- Main row -->
+            <!-- Small boxes (Stat box) -->
             <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Selamat datang di Dashboard Admin</h3>
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3><?= $count_compliance_yes ?></h3>
+                            <p>Jumlah Kepatuhan pada Peraturan</p>
                         </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                            <!-- content here -->
+                        <div class="icon">
+                            <i class="ion ion-checkmark-circled"></i>
                         </div>
-                        <!-- /.card-body -->
                     </div>
-                    <!-- /.card -->
                 </div>
-                <!-- /.col -->
+                <!-- ./col -->
             </div>
             <!-- /.row -->
         </div>

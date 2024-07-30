@@ -31,64 +31,29 @@
             <!-- Main row -->
             <div class="row">
                 <div class="col-12">
-                    <table class="table table-bordered">
-                        <tr>
-                            <th>Jenis Peraturan</th>
-                            <td><?= esc($regulation['jenis_peraturan']) ?></td>
-                        </tr>
-                        <tr>
-                            <th>Nama Peraturan</th>
-                            <td><?= esc($regulation['nama_peraturan']) ?></td>
-                        </tr>
-                        <tr>
-                            <th>Fungsi Terkait</th>
-                            <td><?= esc($regulation['fungsi_terkait']) ?></td>
-                        </tr>
-                        <tr>
-                            <th>Kepatuhan</th>
-                            <td><?= esc($regulation['kepatuhan']) ?></td>
-                        </tr>
-                        <tr>
-                            <th>Isi Peraturan</th>
-                            <td><?= esc($regulation['isi_peraturan']) ?></td>
-                        </tr>
-                        <tr>
-                            <th>Poin Kritis</th>
-                            <td><?= esc($regulation['poin_kritis']) ?></td>
-                        </tr>
-                        <tr>
-                            <th>Instansi Penerbit</th>
-                            <td><?= esc($regulation['instansi_penerbit']) ?></td>
-                        </tr>
-                        <tr>
-                            <th>Analisis Risiko Uraian</th>
-                            <td><?= esc($regulation['analisis_risiko_uraian']) ?></td>
-                        </tr>
-                        <tr>
-                            <th>Analisis Risiko Kategori</th>
-                            <td><?= esc($regulation['analisis_risiko_kategori']) ?></td>
-                        </tr>
-                        <tr>
-                            <th>Analisis Risiko Skor</th>
-                            <td><?= esc($regulation['analisis_risiko_skor']) ?></td>
-                        </tr>
-                        <tr>
-                            <th>Analisis Peraturan Status</th>
-                            <td><?= esc($regulation['analisis_peraturan_status']) ?></td>
-                        </tr>
-                        <tr>
-                            <th>Dampak Finansial</th>
-                            <td><?= esc($regulation['dampak_finansial']) ?></td>
-                        </tr>
-                        <tr>
-                            <th>Dampak Pidana</th>
-                            <td><?= esc($regulation['dampak_pidana']) ?></td>
-                        </tr>
-                        <tr>
-                            <th>Keterangan</th>
-                            <td><?= esc($regulation['keterangan']) ?></td>
-                        </tr>
-                    </table>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title"><?= esc($regulation['nama_peraturan']) ?></h3>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Jenis Peraturan:</strong> <?= esc($regulation['jenis_peraturan']) ?></p>
+                            <p><strong>Fungsi Terkait:</strong> <?= esc($regulation['fungsi_terkait']) ?></p>
+                            <p><strong>Kepatuhan:</strong> <?= esc($regulation['kepatuhan']) ?></p>
+                            <p><strong>Isi Peraturan:</strong> <?= esc($regulation['isi_peraturan']) ?></p>
+                            <p><strong>Poin Kritis:</strong> <?= esc($regulation['poin_kritis']) ?></p>
+                            <p><strong>Instansi Penerbit:</strong> <?= esc($regulation['instansi_penerbit']) ?></p>
+                            <p><strong>Analisis Risiko Uraian:</strong> <?= esc($regulation['analisis_risiko_uraian']) ?></p>
+                            <p><strong>Analisis Risiko Kategori:</strong> <?= esc($regulation['analisis_risiko_kategori']) ?></p>
+                            <p><strong>Analisis Risiko Skor:</strong> <?= esc($regulation['analisis_risiko_skor']) ?></p>
+                            <p><strong>Analisis Peraturan Status:</strong> <?= esc($regulation['analisis_peraturan_status']) ?></p>
+                            <p><strong>Dampak Finansial:</strong> <?= esc($regulation['dampak_finansial']) ?></p>
+                            <p><strong>Dampak Pidana:</strong> <?= esc($regulation['dampak_pidana']) ?></p>
+                            <p><strong>Keterangan:</strong> <?= esc($regulation['keterangan']) ?></p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="<?= base_url('admin/manage_regulation') ?>" class="btn btn-primary">Back to List</a>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.col -->
             </div>

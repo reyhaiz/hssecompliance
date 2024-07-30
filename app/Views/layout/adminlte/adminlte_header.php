@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="<?= base_url('dist/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('dist/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('dist/plugins/toastr/toastr.min.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('dist/plugins/ionicons/css/ionicons.min.css') ?>"> <!-- Tambahkan baris ini -->
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">

@@ -8,7 +8,12 @@ class Admin extends BaseController
 {
     public function dashboard()
     {
-        return view('admin/dashboard');
+        $model = new RegulationModel();
+        $count_compliance_yes = $model->where('kepatuhan', 'Ya')->countAllResults();
+        $data = [
+            'count_compliance_yes' => $count_compliance_yes
+        ];
+        return view('admin/dashboard', $data);
     }
 
     public function manage_regulation()
@@ -34,7 +39,10 @@ class Admin extends BaseController
             'isi_peraturan' => $this->request->getVar('isi_peraturan'),
             'poin_kritis' => $this->request->getVar('poin_kritis'),
             'instansi_penerbit' => $this->request->getVar('instansi_penerbit'),
-            'analisis_risiko' => $this->request->getVar('analisis_risiko'),
+            'analisis_risiko_uraian' => $this->request->getVar('analisis_risiko_uraian'),
+            'analisis_risiko_kategori' => $this->request->getVar('analisis_risiko_kategori'),
+            'analisis_risiko_skor' => $this->request->getVar('analisis_risiko_skor'),
+            'analisis_peraturan_status' => $this->request->getVar('analisis_peraturan_status'),
             'dampak_finansial' => $this->request->getVar('dampak_finansial'),
             'dampak_pidana' => $this->request->getVar('dampak_pidana'),
             'keterangan' => $this->request->getVar('keterangan')
@@ -62,7 +70,10 @@ class Admin extends BaseController
             'isi_peraturan' => $this->request->getVar('isi_peraturan'),
             'poin_kritis' => $this->request->getVar('poin_kritis'),
             'instansi_penerbit' => $this->request->getVar('instansi_penerbit'),
-            'analisis_risiko' => $this->request->getVar('analisis_risiko'),
+            'analisis_risiko_uraian' => $this->request->getVar('analisis_risiko_uraian'),
+            'analisis_risiko_kategori' => $this->request->getVar('analisis_risiko_kategori'),
+            'analisis_risiko_skor' => $this->request->getVar('analisis_risiko_skor'),
+            'analisis_peraturan_status' => $this->request->getVar('analisis_peraturan_status'),
             'dampak_finansial' => $this->request->getVar('dampak_finansial'),
             'dampak_pidana' => $this->request->getVar('dampak_pidana'),
             'keterangan' => $this->request->getVar('keterangan')
@@ -75,7 +86,7 @@ class Admin extends BaseController
     {
         $model = new RegulationModel();
         $model->delete($id);
-        return redirect()->to('/admin/manage_regulation');
+        return redirect()->to(base_url('admin/manage_regulation'));
     }
 
     public function detail_regulation($id)
