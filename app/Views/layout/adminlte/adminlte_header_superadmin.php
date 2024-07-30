@@ -22,7 +22,7 @@
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">Hi, Super Admin</a>
+                <a class="nav-link" href="#">Hello, you are logged in as Super Admin.</a>
             </li>
         </ul>
     </nav>
