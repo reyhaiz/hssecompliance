@@ -10,8 +10,10 @@ class Admin extends BaseController
     {
         $model = new RegulationModel();
         $count_compliance_yes = $model->where('kepatuhan', 'Ya')->countAllResults();
+        $total_regulations = $model->countAllResults();
         $data = [
-            'count_compliance_yes' => $count_compliance_yes
+            'count_compliance_yes' => $count_compliance_yes,
+            'total_regulations' => $total_regulations
         ];
         return view('admin/dashboard', $data);
     }

@@ -10,25 +10,19 @@
                 <div class="col-sm-6">
                     <h1 class="m-0">Add Regulation</h1>
                 </div>
-                <!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item active">Add Regulation</li>
                     </ol>
                 </div>
-                <!-- /.col -->
             </div>
-            <!-- /.row -->
         </div>
-        <!-- /.container-fluid -->
     </div>
-    <!-- /.content-header -->
 
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <!-- Main row -->
             <div class="row">
                 <div class="col-12">
                     <form action="<?= base_url('admin/save_regulation') ?>" method="post">
@@ -47,20 +41,18 @@
                             <input type="text" class="form-control" id="nama_peraturan" name="nama_peraturan" maxlength="264">
                         </div>
                         <div class="form-group">
-                            <label for="fungsi_terkait">Fungsi Terkait</label>
-                            <div class="checkbox">
-                                <label><input type="checkbox" name="fungsi_terkait[]" value="EP"> EP</label>
-                                <label><input type="checkbox" name="fungsi_terkait[]" value="WOWS"> WOWS</label>
-                                <label><input type="checkbox" name="fungsi_terkait[]" value="PO"> PO</label>
-                                <label><input type="checkbox" name="fungsi_terkait[]" value="RAM"> RAM</label>
-                                <label><input type="checkbox" name="fungsi_terkait[]" value="LR"> LR</label>
-                                <label><input type="checkbox" name="fungsi_terkait[]" value="HSSE"> HSSE</label>
-                                <label><input type="checkbox" name="fungsi_terkait[]" value="SCM"> SCM</label>
-                                <label><input type="checkbox" name="fungsi_terkait[]" value="Finance"> Finance</label>
-                                <label><input type="checkbox" name="fungsi_terkait[]" value="HC"> HC</label>
-                                <label><input type="checkbox" name="fungsi_terkait[]" value="ICT"> ICT</label>
-                                <label><input type="checkbox" name="fungsi_terkait[]" value="Semua Fungsi"> Semua Fungsi</label>
-                            </div>
+                            <label for="fungsi_terkait">Fungsi Terkait</label><br>
+                            <input type="checkbox" name="fungsi_terkait[]" value="EP"> EP<br>
+                            <input type="checkbox" name="fungsi_terkait[]" value="WOWS"> WOWS<br>
+                            <input type="checkbox" name="fungsi_terkait[]" value="PO"> PO<br>
+                            <input type="checkbox" name="fungsi_terkait[]" value="RAM"> RAM<br>
+                            <input type="checkbox" name="fungsi_terkait[]" value="LR"> LR<br>
+                            <input type="checkbox" name="fungsi_terkait[]" value="HSSE"> HSSE<br>
+                            <input type="checkbox" name="fungsi_terkait[]" value="SCM"> SCM<br>
+                            <input type="checkbox" name="fungsi_terkait[]" value="Finance"> Finance<br>
+                            <input type="checkbox" name="fungsi_terkait[]" value="HC"> HC<br>
+                            <input type="checkbox" name="fungsi_terkait[]" value="ICT"> ICT<br>
+                            <input type="checkbox" name="fungsi_terkait[]" value="Semua Fungsi"> Semua Fungsi<br>
                         </div>
                         <div class="form-group">
                             <label for="kepatuhan">Kepatuhan</label>
@@ -129,14 +121,9 @@
                         <button type="submit" class="btn btn-primary">Save</button>
                     </form>
                 </div>
-                <!-- /.col -->
             </div>
-            <!-- /.row (main row) -->
         </div>
-        <!-- /.container-fluid -->
     </section>
-    <!-- /.content -->
 </div>
-<!-- /.content-wrapper -->
 
 <?= $this->include('layout/adminlte/adminlte_footer') ?>
