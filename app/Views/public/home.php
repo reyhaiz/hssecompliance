@@ -5,7 +5,7 @@
 
 <div class="main-container">
     <div class="d-flex align-items-center justify-content-between mb-3">
-        <h1 class="mr-3">List of Regulations</h1>
+        <h1 class="mr-3">Regulations</h1>
         <form action="" method="get" class="search-form d-flex align-items-center">
             <input type="text" name="search" class="form-control search-input" placeholder="Search regulations...">
             <button type="submit" class="btn search-button">Search</button>
