@@ -51,7 +51,7 @@
                                 <td><?= $admin['peran'] ?></td>
                                 <td>
                                     <a href="<?= base_url('superadmin/edit_admin/'.$admin['id']) ?>" class="btn btn-warning">Edit</a>
-                                    <a href="<?= base_url('superadmin/delete_admin/'.$admin['id']) ?>" class="btn btn-danger">Delete</a>
+                                    <a href="<?= base_url('superadmin/delete_admin/'.$admin['id']) ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this admin?');">Delete</a>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
