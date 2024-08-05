@@ -20,6 +20,11 @@
                 <!-- /.col -->
             </div>
             <!-- /.row -->
+            <?php if(session()->getFlashdata('success')): ?>
+                <div class="alert alert-success">
+                    <?= session()->getFlashdata('success') ?>
+                </div>
+            <?php endif; ?>
         </div>
         <!-- /.container-fluid -->
     </div>
@@ -28,7 +33,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <!-- Small boxes (Stat box) -->
+            <!-- Main row -->
             <div class="row">
                 <div class="col-lg-3 col-6">
                     <!-- small box -->

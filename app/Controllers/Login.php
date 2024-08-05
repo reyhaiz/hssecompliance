@@ -16,12 +16,12 @@ class Login extends Controller
     {
         $session = session();
         $model = new UserModel();
-        
+
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
-        
+
         $data = $model->where('email', $email)->first();
-        
+
         if ($data) {
             $pass = $data['kata_sandi'];
             $authenticatePassword = password_verify($password, $pass);
@@ -34,7 +34,10 @@ class Login extends Controller
                     'logged_in' => TRUE
                 ];
                 $session->set($ses_data);
-                
+
+                // Set flashdata for successful login alert
+                $session->setFlashdata('success', 'Selamat Anda berhasil masuk sebagai ' . ucfirst($data['peran']));
+
                 // Redirect based on role
                 if ($data['peran'] == 'superadmin') {
                     return redirect()->to('/superadmin/dashboard');
@@ -60,11 +63,11 @@ class Login extends Controller
     {
         $session = session();
         $email = $this->request->getPost('email');
-        
+
         // Cek apakah email ada di database
         $model = new UserModel();
         $data = $model->where('email', $email)->first();
-        
+
         if ($data) {
             // Simpan permintaan reset password ke database
             $updateData = [

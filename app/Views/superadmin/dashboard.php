@@ -20,6 +20,11 @@
                 <!-- /.col -->
             </div>
             <!-- /.row -->
+            <?php if(session()->getFlashdata('success')): ?>
+                <div class="alert alert-success">
+                    <?= session()->getFlashdata('success') ?>
+                </div>
+            <?php endif; ?>
         </div>
         <!-- /.container-fluid -->
     </div>
