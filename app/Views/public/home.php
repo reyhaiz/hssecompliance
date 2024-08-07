@@ -4,13 +4,18 @@
 <link rel="stylesheet" href="<?= base_url('css/styles.css') ?>">
 
 <div class="main-container">
+    <h1 class="mb-3">Regulations</h1>
+    <div class="chart-container mb-3" style="width: 60%; margin: 0 auto;">
+        <canvas id="complianceChart"></canvas>
+    </div>
+
     <div class="d-flex align-items-center justify-content-between mb-3">
-        <h1 class="mr-3">Regulations</h1>
         <form action="" method="get" class="search-form d-flex align-items-center">
             <input type="text" name="search" class="form-control search-input" placeholder="Search regulations...">
             <button type="submit" class="btn search-button">Search</button>
         </form>
     </div>
+
     <div class="d-flex align-items-center mb-3">
         <span class="mr-2">View Mode:</span>
         <span id="list-view-button" class="material-symbols-outlined btn-view-mode active">
@@ -20,12 +25,13 @@
             data_table
         </span>
     </div>
+
     <div id="list-container" class="list-container">
-        <ul id="regulation-list">
+        <ol id="regulation-list">
             <?php foreach ($regulations as $regulation): ?>
                 <li><a href="<?= base_url('regulation/detail/' . $regulation['id']) ?>"><?= esc($regulation['nama_peraturan']) ?></a></li>
             <?php endforeach; ?>
-        </ul>
+        </ol>
     </div>
     <div id="table-container" class="table-container" style="display:none;">
         <table class="table table-bordered home-table">
@@ -76,6 +82,39 @@
         document.getElementById('table-view-button').classList.add('btn-primary', 'active');
         document.getElementById('list-view-button').classList.remove('btn-primary', 'active');
         document.getElementById('list-view-button').classList.add('btn-secondary');
+    });
+
+    const ctx = document.getElementById('complianceChart').getContext('2d');
+    const complianceData = {
+        labels: ['HSSE', 'HR', 'EP', 'Operasi'],
+        datasets: [
+            {
+                label: 'Kepatuhan Ya',
+                data: [2, 1, 1, 1],
+                backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            },
+            {
+                label: 'Kepatuhan Tidak',
+                data: [0, 1, 0, 0],
+                backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }
+        ]
+    };
+
+    const complianceChart = new Chart(ctx, {
+        type: 'bar',
+        data: complianceData,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
     });
 </script>
 
