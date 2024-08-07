@@ -16,14 +16,25 @@
         </form>
     </div>
 
-    <div class="d-flex align-items-center mb-3">
-        <span class="mr-2">View Mode:</span>
-        <span id="list-view-button" class="material-symbols-outlined btn-view-mode active">
-            view_list
-        </span>
-        <span id="table-view-button" class="material-symbols-outlined btn-view-mode">
-            data_table
-        </span>
+    <div class="d-flex align-items-center justify-content-between mb-3">
+        <div class="d-flex align-items-center">
+            <span class="mr-2">View Mode:</span>
+            <span id="list-view-button" class="material-symbols-outlined btn-view-mode active">
+                view_list
+            </span>
+            <span id="table-view-button" class="material-symbols-outlined btn-view-mode">
+                data_table
+            </span>
+        </div>
+        <div>
+            <form action="" method="get" id="perPageForm">
+                <select name="perPage" id="perPage" class="form-control">
+                    <option value="25" <?= $perPage == 25 ? 'selected' : '' ?>>25</option>
+                    <option value="75" <?= $perPage == 75 ? 'selected' : '' ?>>75</option>
+                    <option value="150" <?= $perPage == 150 ? 'selected' : '' ?>>150</option>
+                </select>
+            </form>
+        </div>
     </div>
 
     <div id="list-container" class="list-container">
@@ -65,6 +76,10 @@
             </tbody>
         </table>
     </div>
+
+    <div class="pagination-container">
+        <?= $pager->links('regulations', 'default_full') ?>
+    </div>
 </div>
 
 <script>
@@ -84,20 +99,24 @@
         document.getElementById('list-view-button').classList.add('btn-secondary');
     });
 
+    document.getElementById('perPage').addEventListener('change', function() {
+        document.getElementById('perPageForm').submit();
+    });
+
     const ctx = document.getElementById('complianceChart').getContext('2d');
     const complianceData = {
-        labels: ['HSSE', 'HR', 'EP', 'Operasi'],
+        labels: ['HSSE', 'HR', 'EP', 'Operasi', 'Finance', 'WOWS', 'PO', 'RAM', 'LR', 'SCM', 'HC', 'ICT', 'Semua Fungsi'],
         datasets: [
             {
                 label: 'Kepatuhan Ya',
-                data: [2, 1, 1, 1],
+                data: [<?= $complianceData['HSSE']['yes'] ?>, <?= $complianceData['HR']['yes'] ?>, <?= $complianceData['EP']['yes'] ?>, <?= $complianceData['Operasi']['yes'] ?>, <?= $complianceData['Finance']['yes'] ?>, <?= $complianceData['WOWS']['yes'] ?>, <?= $complianceData['PO']['yes'] ?>, <?= $complianceData['RAM']['yes'] ?>, <?= $complianceData['LR']['yes'] ?>, <?= $complianceData['SCM']['yes'] ?>, <?= $complianceData['HC']['yes'] ?>, <?= $complianceData['ICT']['yes'] ?>, <?= $complianceData['Semua Fungsi']['yes'] ?>],
                 backgroundColor: 'rgba(75, 192, 192, 0.6)',
                 borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 1
             },
             {
                 label: 'Kepatuhan Tidak',
-                data: [0, 1, 0, 0],
+                data: [<?= $complianceData['HSSE']['no'] ?>, <?= $complianceData['HR']['no'] ?>, <?= $complianceData['EP']['no'] ?>, <?= $complianceData['Operasi']['no'] ?>, <?= $complianceData['Finance']['no'] ?>, <?= $complianceData['WOWS']['no'] ?>, <?= $complianceData['PO']['no'] ?>, <?= $complianceData['RAM']['no'] ?>, <?= $complianceData['LR']['no'] ?>, <?= $complianceData['SCM']['no'] ?>, <?= $complianceData['HC']['no'] ?>, <?= $complianceData['ICT']['no'] ?>, <?= $complianceData['Semua Fungsi']['no'] ?>],
                 backgroundColor: 'rgba(255, 99, 132, 0.6)',
                 borderColor: 'rgba(255, 99, 132, 1)',
                 borderWidth: 1
