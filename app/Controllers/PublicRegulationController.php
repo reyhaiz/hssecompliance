@@ -52,6 +52,28 @@ class PublicRegulationController extends BaseController
             'pager' => $pager,
             'perPage' => $perPage
         ];
+
         return view('public/home', $data);
+    }
+
+    public function detail($id)
+    {
+        $model = new RegulationModel();
+        $regulation = $model->find($id);
+
+        if (!$regulation) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+
+        $data = [
+            'regulation' => $regulation
+        ];
+
+        return view('public/detail_regulation', $data);
+    }
+
+    public function about()
+    {
+        return view('public/about');
     }
 }
