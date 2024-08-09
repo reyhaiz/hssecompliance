@@ -26,15 +26,6 @@
                 data_table
             </span>
         </div>
-        <div>
-            <form action="" method="get" id="perPageForm">
-                <select name="perPage" id="perPage" class="form-control">
-                    <option value="25" <?= $perPage == 25 ? 'selected' : '' ?>>25</option>
-                    <option value="75" <?= $perPage == 75 ? 'selected' : '' ?>>75</option>
-                    <option value="150" <?= $perPage == 150 ? 'selected' : '' ?>>150</option>
-                </select>
-            </form>
-        </div>
     </div>
 
     <div id="list-container" class="list-container">
@@ -77,9 +68,7 @@
         </table>
     </div>
 
-    <div class="pagination-container">
-        <?= $pager->links('regulations', 'default_full') ?>
-    </div>
+    <!-- Hilangkan bagian pagination -->
 </div>
 
 <script>
@@ -97,10 +86,6 @@
         document.getElementById('table-view-button').classList.add('btn-primary', 'active');
         document.getElementById('list-view-button').classList.remove('btn-primary', 'active');
         document.getElementById('list-view-button').classList.add('btn-secondary');
-    });
-
-    document.getElementById('perPage').addEventListener('change', function() {
-        document.getElementById('perPageForm').submit();
     });
 
     const ctx = document.getElementById('complianceChart').getContext('2d');

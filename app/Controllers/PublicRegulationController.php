@@ -10,11 +10,8 @@ class PublicRegulationController extends BaseController
     {
         $model = new RegulationModel();
 
-        $perPage = $this->request->getGet('perPage') ?? 25; // Default 25
-        $page = $this->request->getGet('page') ?? 1; // Default page 1
-
-        $regulations = $model->paginate($perPage, 'regulations', $page);
-        $pager = $model->pager;
+        // Mengambil semua data regulasi tanpa pagination
+        $regulations = $model->findAll();
 
         $complianceData = [
             'HSSE' => ['yes' => 0, 'no' => 0],
@@ -49,8 +46,6 @@ class PublicRegulationController extends BaseController
         $data = [
             'regulations' => $regulations,
             'complianceData' => $complianceData,
-            'pager' => $pager,
-            'perPage' => $perPage
         ];
 
         return view('public/home', $data);
