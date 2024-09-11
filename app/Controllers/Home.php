@@ -9,14 +9,14 @@ class Home extends BaseController
     public function index()
     {
         $model = new RegulationModel();
-        $data['regulations'] = $model->findAll();
+        $data['regulations'] = $model->getRegulationsWithSelectedColumns();
         return view('public/home', $data);
     }
 
-    public function detail($id)
+    public function detail($idregulasi)
     {
         $model = new RegulationModel();
-        $data['regulation'] = $model->find($id);
+        $data['regulation'] = $model->find($idregulasi);
         return view('public/detail_regulation', $data);
     }
 }

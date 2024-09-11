@@ -9,9 +9,7 @@ class PublicRegulationController extends BaseController
     public function index()
     {
         $model = new RegulationModel();
-
-        // Mengambil semua data regulasi tanpa pagination
-        $regulations = $model->findAll();
+        $regulations = $model->getRegulationsWithSelectedColumns();
 
         $complianceData = [
             'HSSE' => ['yes' => 0, 'no' => 0],
@@ -51,10 +49,10 @@ class PublicRegulationController extends BaseController
         return view('public/home', $data);
     }
 
-    public function detail($id)
+    public function detail($idregulasi)
     {
         $model = new RegulationModel();
-        $regulation = $model->find($id);
+        $regulation = $model->find($idregulasi);
 
         if (!$regulation) {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
