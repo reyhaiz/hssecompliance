@@ -3,7 +3,13 @@
 <link rel="stylesheet" href="<?= base_url('css/styles.css') ?>">
 
 <div class="main-container">
-    <h1 class="mb-3">Regulations</h1>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h1 class="mb-3">Regulations</h1>
+        <form class="form-inline search-form" style="align-self: flex-end; position: relative;">
+            <input type="text" id="searchBox" class="form-control" placeholder="Cari nama peraturan" aria-label="Search" style="margin-right: 10px; border-radius: 0.25rem; font-size: 16px; padding-right: 30px; width: 250px;">
+            <button class="btn-cari" id="searchButton" type="button" style="font-size: 16px;">Cari</button>
+        </form>
+    </div>
 
     <!-- Tombol untuk membuka pop-up grafik -->
     <p><a href="#" id="openChartPopup" class="btn btn-primary">Grafik</a></p>
@@ -35,8 +41,8 @@
             </div>
 
             <div class="mt-3">
-                <button type="button" class="btn-primary-custom mb-2" onclick="filterRegulations()">Filter</button>
-                <button type="button" class="btn-secondary-custom mb-2" onclick="clearFilters()">Clear</button>
+                <button type="button" class="btn-primary-custom mb-2" id="filterButton">Filter</button>
+                <button type="button" class="btn-secondary-custom mb-2" id="clearButton">Clear</button>
             </div>
         </form>
     </div>
@@ -54,10 +60,10 @@
             </thead>
             <tbody id="regulation-table">
                 <?php foreach ($regulations as $index => $regulation): ?>
-                    <tr onclick="window.location='<?= base_url('regulation/detail/' . $regulation['idregulasi']) ?>'">
+                    <tr>
                         <td><?= $index + 1 ?></td>
                         <td><?= esc($regulation['jenis_peraturan']) ?></td>
-                        <td><a href="<?= base_url('regulation/detail/' . $regulation['idregulasi']) ?>"><?= esc($regulation['nama_peraturan']) ?></a></td>
+                        <td><?= esc($regulation['nama_peraturan']) ?></td>
                         <td><?= esc($regulation['fungsi_terkait']) ?></td>
                         <td><?= esc($regulation['kepatuhan']) ?></td>
                     </tr>
@@ -66,7 +72,6 @@
         </table>
     </div>
 
-    <!-- Menampilkan jumlah total peraturan di bawah tabel -->
     <p>Total Regulations: <span id="total-regulations"><?= count($regulations) ?></span></p>
 
 </div>
@@ -92,18 +97,16 @@
         height: 100%;
         background-color: rgba(0, 0, 0, 0.5);
         display: flex;
-        align-items: center;
         justify-content: center;
+        align-items: center;
     }
     .chart-popup-content {
-        position: relative;
         background-color: #fefefe;
         padding: 20px;
         width: 60%;
         border-radius: 10px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        max-height: 90vh; /* agar tidak lebih dari tinggi layar */
-        overflow-y: auto; /* jika konten terlalu panjang */
+        position: relative;
     }
     .close {
         position: absolute;
@@ -122,17 +125,16 @@
         padding: 10px 20px;
         font-size: 14px;
         cursor: pointer;
-        font-size: 18px;
     }
 
     .btn-primary-custom:hover {
-        background-color: #ACC42C; /* Keep the background color */
-        color: gray; /* Change text color on hover */
+        background-color: #ACC42C;
+        color: gray;
     }
 
     .btn-primary-custom:focus {
-        outline: none; /* Remove the default outline */
-        box-shadow: none; /* Remove any shadow if it appears */
+        outline: none;
+        box-shadow: none;
     }
 
     .btn-secondary-custom {
@@ -143,17 +145,36 @@
         padding: 10px 20px;
         font-size: 14px;
         cursor: pointer;
-        font-size: 18px;
     }
 
     .btn-secondary-custom:hover {
-        background-color: #EC1C2C; /* Keep the background color */
-        color: gray; /* Change text color on hover */
+        background-color: #EC1C2C;
+        color: gray;
     }
 
     .btn-secondary-custom:focus {
-        outline: none; /* Remove the default outline */
-        box-shadow: none; /* Remove any shadow if it appears */
+        outline: none;
+        box-shadow: none;
+    }
+
+    .btn-cari {
+        background-color: #4870B0;
+        color: white;
+        border-radius: 0.25rem;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .btn-cari:hover {
+        background-color: #365f90;
+        color: white;
+    }
+
+    .btn-cari:focus {
+        outline: none;
+        box-shadow: none;
     }
 </style>
 
@@ -198,31 +219,51 @@
         }
     });
 
-    // Fungsi untuk menampilkan/menghilangkan pop-up
+    // Pop-up chart display
     var chartPopup = document.getElementById("chartPopup");
     var openChartPopup = document.getElementById("openChartPopup");
     var closeChartPopup = document.getElementById("closeChartPopup");
 
-    // Ketika tombol "Grafik" diklik
     openChartPopup.onclick = function(event) {
         event.preventDefault();
         chartPopup.style.display = "flex";
     }
 
-    // Ketika tombol "X" diklik
     closeChartPopup.onclick = function() {
         chartPopup.style.display = "none";
     }
 
-    // Menutup pop-up ketika pengguna mengklik di luar kotak
     window.onclick = function(event) {
         if (event.target == chartPopup) {
             chartPopup.style.display = "none";
         }
     }
 
-    // Fungsi untuk filter regulasi
-    function filterRegulations() {
+    // Filter Function
+    document.getElementById('filterButton').addEventListener('click', function() {
+        filterRegulations();
+    });
+
+    document.getElementById('clearButton').addEventListener('click', function() {
+        clearFilters();
+        filterRegulations(); // Refresh with all data
+    });
+
+    // Search functionality
+    document.getElementById('searchButton').addEventListener('click', function() {
+        var searchValue = document.getElementById('searchBox').value.toLowerCase();
+        filterRegulations(searchValue);
+    });
+
+    document.getElementById('searchBox').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            document.getElementById('searchButton').click();
+        }
+    });
+
+    // Update based on filtering
+    function filterRegulations(searchValue = '') {
         var selectedFungsi = Array.from(document.querySelectorAll('.fungsi:checked')).map(function (checkbox) {
             return checkbox.value;
         });
@@ -231,46 +272,48 @@
 
         var rows = document.querySelectorAll('#regulation-table tr');
         var totalVisibleRows = 0;
-        rows.forEach(function (row) {
+        var filteredComplianceData = {};
+
+        rows.forEach(function(row) {
             var fungsiCell = row.cells[3].innerText.trim();
             var kepatuhanCell = row.cells[4].innerText.trim();
+            var regulationName = row.cells[2].innerText.toLowerCase();
 
             var isFungsiMatch = selectedFungsi.includes("Semua Fungsi") || selectedFungsi.some(fungsi => fungsiCell.includes(fungsi));
             var isKepatuhanMatch = (kepatuhan === "" || kepatuhanCell === kepatuhan);
+            var isSearchMatch = regulationName.includes(searchValue);
 
-            if (isFungsiMatch && isKepatuhanMatch) {
+            if (isFungsiMatch && isKepatuhanMatch && isSearchMatch) {
                 row.style.display = "";
                 totalVisibleRows++;
+
+                // Update filteredComplianceData based on visible rows
+                if (!filteredComplianceData[fungsiCell]) {
+                    filteredComplianceData[fungsiCell] = { yes: 0, no: 0 };
+                }
+                if (kepatuhanCell === 'Ya') {
+                    filteredComplianceData[fungsiCell].yes++;
+                } else {
+                    filteredComplianceData[fungsiCell].no++;
+                }
+
             } else {
                 row.style.display = "none";
             }
         });
 
-        // Update total regulations count
         document.getElementById('total-regulations').innerText = totalVisibleRows;
 
-        // Update grafik berdasarkan fungsi terkait yang dipilih
-        var filteredComplianceData = {};
-        if (selectedFungsi.includes("Semua Fungsi")) {
-            filteredComplianceData = originalComplianceData;
-        } else {
-            selectedFungsi.forEach(function (fungsi) {
-                if (originalComplianceData[fungsi]) {
-                    filteredComplianceData[fungsi] = originalComplianceData[fungsi];
-                }
-            });
-        }
-
+        // Update grafik berdasarkan data yang tersaring
         updateChart(filteredComplianceData);
     }
 
-    // Fungsi untuk memperbarui chart
     function updateChart(filteredData) {
         var updatedLabels = Object.keys(filteredData);
-        var updatedYesData = updatedLabels.map(function (label) {
+        var updatedYesData = updatedLabels.map(function(label) {
             return filteredData[label].yes;
         });
-        var updatedNoData = updatedLabels.map(function (label) {
+        var updatedNoData = updatedLabels.map(function(label) {
             return filteredData[label].no;
         });
 
@@ -280,7 +323,6 @@
         complianceChart.update();
     }
 
-    // Fungsi untuk clear filter
     function clearFilters() {
         document.querySelectorAll('.fungsi').forEach(function (checkbox) {
             checkbox.checked = false;
@@ -291,16 +333,10 @@
         }
         document.getElementById('checkAll').checked = true;
 
-        filterRegulations();
-    }
+        document.getElementById('searchBox').value = ''; // Clear search box as well
 
-    // Fungsi untuk memilih Semua Fungsi
-    document.getElementById('checkAll').onclick = function () {
-        var checkboxes = document.querySelectorAll('.fungsi');
-        checkboxes.forEach(function (checkbox) {
-            checkbox.checked = document.getElementById('checkAll').checked;
-        });
-    };
+        filterRegulations(); // Display all regulations
+    }
 </script>
 
 <?= $this->include('layout/adminlte/footer') ?>
