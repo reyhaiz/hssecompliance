@@ -35,8 +35,8 @@
             </div>
 
             <div class="mt-3">
-                <button type="button" class="btn btn-primary mb-2" onclick="filterRegulations()">Terapkan Filter</button>
-                <button type="button" class="btn btn-secondary mb-2" onclick="clearFilters()">Clear</button>
+                <button type="button" class="btn-primary-custom mb-2" onclick="filterRegulations()">Filter</button>
+                <button type="button" class="btn-secondary-custom mb-2" onclick="clearFilters()">Clear</button>
             </div>
         </form>
     </div>
@@ -72,7 +72,7 @@
 </div>
 
 <!-- Pop-up untuk menampilkan grafik -->
-<div id="chartPopup" class="chart-popup" style="display: none;">
+<div id="chartPopup" class="chart-popup">
     <div class="chart-popup-content">
         <span id="closeChartPopup" class="close">&times;</span>
         <h2>Grafik Kepatuhan</h2>
@@ -80,7 +80,7 @@
     </div>
 </div>
 
-<!-- Style untuk pop-up -->
+<!-- Style untuk pop-up dan tombol -->
 <style>
     .chart-popup {
         display: none;
@@ -91,15 +91,19 @@
         width: 100%;
         height: 100%;
         background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     .chart-popup-content {
         position: relative;
         background-color: #fefefe;
-        margin: 10% auto;
         padding: 20px;
         width: 60%;
         border-radius: 10px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        max-height: 90vh; /* agar tidak lebih dari tinggi layar */
+        overflow-y: auto; /* jika konten terlalu panjang */
     }
     .close {
         position: absolute;
@@ -108,6 +112,48 @@
         font-size: 28px;
         font-weight: bold;
         cursor: pointer;
+    }
+
+    .btn-primary-custom {
+        background-color: #ACC42C;
+        color: white;
+        border-radius: 0.25rem;
+        border: none;
+        padding: 10px 20px;
+        font-size: 14px;
+        cursor: pointer;
+        font-size: 18px;
+    }
+
+    .btn-primary-custom:hover {
+        background-color: #ACC42C; /* Keep the background color */
+        color: gray; /* Change text color on hover */
+    }
+
+    .btn-primary-custom:focus {
+        outline: none; /* Remove the default outline */
+        box-shadow: none; /* Remove any shadow if it appears */
+    }
+
+    .btn-secondary-custom {
+        background-color: #EC1C2C;
+        color: white;
+        border-radius: 0.25rem;
+        border: none;
+        padding: 10px 20px;
+        font-size: 14px;
+        cursor: pointer;
+        font-size: 18px;
+    }
+
+    .btn-secondary-custom:hover {
+        background-color: #EC1C2C; /* Keep the background color */
+        color: gray; /* Change text color on hover */
+    }
+
+    .btn-secondary-custom:focus {
+        outline: none; /* Remove the default outline */
+        box-shadow: none; /* Remove any shadow if it appears */
     }
 </style>
 
@@ -160,7 +206,7 @@
     // Ketika tombol "Grafik" diklik
     openChartPopup.onclick = function(event) {
         event.preventDefault();
-        chartPopup.style.display = "block";
+        chartPopup.style.display = "flex";
     }
 
     // Ketika tombol "X" diklik
