@@ -1,11 +1,8 @@
 <?php
-
 namespace App\Controllers;
-
 use App\Models\UserModel;
-use CodeIgniter\Controller;
 
-class Login extends Controller
+class Login extends BaseController
 {
     public function index()
     {
@@ -17,29 +14,30 @@ class Login extends Controller
         $session = session();
         $model = new UserModel();
 
+        // Use 'email_admin' here to match the database column
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
 
-        $data = $model->where('email', $email)->first();
+        // Ensure the correct column name 'email_admin' is used
+        $data = $model->where('email_admin', $email)->first();
 
         if ($data) {
-            $pass = $data['kata_sandi'];
+            $pass = $data['password_admin']; // Ensure you use 'password_admin'
             $authenticatePassword = password_verify($password, $pass);
+
             if ($authenticatePassword) {
+                // Use 'idadmin' instead of 'id'
                 $ses_data = [
-                    'id' => $data['id'],
-                    'nama' => $data['nama'],
-                    'email' => $data['email'],
-                    'peran' => $data['peran'],
+                    'idadmin' => $data['idadmin'], // Updated to 'idadmin'
+                    'nama' => $data['nama_admin'], // Use 'nama_admin'
+                    'email' => $data['email_admin'], // Use 'email_admin'
+                    'role' => $data['role'], // Ensure 'role' matches
                     'logged_in' => TRUE
                 ];
                 $session->set($ses_data);
 
-                // Set flashdata for successful login alert
-                $session->setFlashdata('success', 'Selamat Anda berhasil masuk sebagai ' . ucfirst($data['peran']));
-
                 // Redirect based on role
-                if ($data['peran'] == 'superadmin') {
+                if ($data['role'] == 'superadmin') {
                     return redirect()->to('/superadmin/dashboard');
                 } else {
                     return redirect()->to('/admin/dashboard');
@@ -64,17 +62,12 @@ class Login extends Controller
         $session = session();
         $email = $this->request->getPost('email');
 
-        // Cek apakah email ada di database
         $model = new UserModel();
-        $data = $model->where('email', $email)->first();
+        $data = $model->where('email_admin', $email)->first(); // Ensure 'email_admin' is used
 
         if ($data) {
-            // Simpan permintaan reset password ke database
-            $updateData = [
-                'reset_requested' => true
-            ];
-            $model->update($data['id'], $updateData);
-
+            $updateData = ['reset_requested' => true];
+            $model->update($data['idadmin'], $updateData); // Use 'idadmin'
             $session->setFlashdata('msg', 'Permintaan reset kata sandi telah berhasil. Silakan periksa email Anda.');
         } else {
             $session->setFlashdata('msg', 'Email tidak ditemukan. Hubungi super admin untuk mendaftarkan akun Anda.');
