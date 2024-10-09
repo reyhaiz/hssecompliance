@@ -32,7 +32,7 @@
             <div class="row">
                 <div class="col-12">
                     <form action="<?= base_url('superadmin/update_admin') ?>" method="post">
-                        <input type="hidden" name="id" value="<?= $admin['id'] ?>">
+                        <input type="hidden" name="id" value="<?= $admin['idadmin'] ?>">
                         <div class="form-group">
                             <label for="nama">Nama</label>
                             <input type="text" class="form-control" id="nama" name="nama" value="<?= $admin['nama'] ?>" required>

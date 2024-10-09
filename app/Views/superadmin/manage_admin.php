@@ -45,13 +45,13 @@
                         <tbody>
                             <?php foreach ($admins as $admin): ?>
                             <tr>
-                                <td><?= $admin['id'] ?></td>
-                                <td><?= $admin['nama'] ?></td>
-                                <td><?= $admin['email'] ?></td>
-                                <td><?= $admin['peran'] ?></td>
+                                <td><?= $admin['idadmin'] ?></td>
+                                <td><?= $admin['nama_admin'] ?></td>
+                                <td><?= $admin['email_admin'] ?></td>
+                                <td><?= $admin['role'] ?></td>
                                 <td>
-                                    <a href="<?= base_url('superadmin/edit_admin/'.$admin['id']) ?>" class="btn btn-warning">Edit</a>
-                                    <a href="<?= base_url('superadmin/delete_admin/'.$admin['id']) ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this admin?');">Delete</a>
+                                    <a href="<?= base_url('superadmin/edit_admin/'.$admin['idadmin']) ?>" class="btn btn-warning">Edit</a>
+                                    <a href="<?= base_url('superadmin/delete_admin/'.$admin['idadmin']) ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this admin?');">Delete</a>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

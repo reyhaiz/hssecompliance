@@ -52,8 +52,8 @@
                                 <td><?= esc($regulation['fungsi_terkait']) ?></td>
                                 <td><?= esc($regulation['kepatuhan']) ?></td>
                                 <td>
-                                    <a href="<?= base_url('admin/edit_regulation/' . $regulation['id']) ?>" class="btn btn-warning">Edit</a>
-                                    <a href="<?= base_url('admin/delete_regulation/' . $regulation['id']) ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this regulation?');">Delete</a>
+                                    <a href="<?= base_url('admin/edit_regulation/' . $regulation['idregulasi']) ?>" class="btn btn-warning">Edit</a>
+                                    <a href="<?= base_url('admin/delete_regulation/' . $regulation['idregulasi']) ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this regulation?');">Delete</a>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

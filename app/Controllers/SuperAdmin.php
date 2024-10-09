@@ -21,7 +21,7 @@ class SuperAdmin extends Controller
 
     public function manage_admin()
     {
-        $data['admins'] = $this->userModel->where('peran', 'admin')->findAll();
+        $data['admins'] = $this->userModel->where('role', 'admin')->findAll();
         return view('superadmin/manage_admin', $data);
     }
 
@@ -36,7 +36,7 @@ class SuperAdmin extends Controller
             'nama' => $this->request->getPost('nama'),
             'email' => $this->request->getPost('email'),
             'kata_sandi' => password_hash($this->request->getPost('kata_sandi'), PASSWORD_BCRYPT),
-            'peran' => 'admin',
+            'role' => 'admin',
         ];
 
         $this->userModel->save($data);
