@@ -26,7 +26,7 @@
             <div class="row">
                 <div class="col-12">
                     <form action="<?= base_url('admin/update_regulation') ?>" method="post">
-                        <input type="hidden" name="id" value="<?= esc($regulation['id']) ?>">
+                        <input type="hidden" name="id" value="<?= esc($regulation['idregulasi']) ?>">
                         <div class="form-group">
                             <label for="jenis_peraturan">Jenis Peraturan</label>
                             <select class="form-control" id="jenis_peraturan" name="jenis_peraturan">

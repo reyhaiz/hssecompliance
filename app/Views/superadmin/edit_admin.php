@@ -35,11 +35,11 @@
                         <input type="hidden" name="id" value="<?= $admin['idadmin'] ?>">
                         <div class="form-group">
                             <label for="nama">Nama</label>
-                            <input type="text" class="form-control" id="nama" name="nama" value="<?= $admin['nama'] ?>" required>
+                            <input type="text" class="form-control" id="nama" name="nama" value="<?= $admin['nama_admin'] ?>" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" value="<?= $admin['email'] ?>" required>
+                            <input type="email" class="form-control" id="email" name="email" value="<?= $admin['email_admin'] ?>" required>
                         </div>
                         <div class="form-group">
                             <label for="kata_sandi">Kata Sandi</label>
