@@ -3,18 +3,29 @@
 namespace App\Controllers;
 
 use App\Models\RegulationModel;
+use App\Models\AdminActivityLogModel;
 
 class Admin extends BaseController
 {
     public function dashboard()
     {
         $model = new RegulationModel();
-        $count_compliance_yes = $model->where('kepatuhan', 'Ya')->countAllResults();
+
+        // Menghitung total regulasi
         $total_regulations = $model->countAllResults();
+
+        // Menghitung regulasi dengan kepatuhan 'Ya'
+        $count_compliance_yes = $model->where('kepatuhan', 'Ya')->countAllResults();
+
+        // Menghitung regulasi dengan kepatuhan 'Tidak'
+        $count_compliance_no = $model->where('kepatuhan', 'Tidak')->countAllResults();
+
         $data = [
+            'total_regulations' => $total_regulations,
             'count_compliance_yes' => $count_compliance_yes,
-            'total_regulations' => $total_regulations
+            'count_compliance_no' => $count_compliance_no
         ];
+
         return view('admin/dashboard', $data);
     }
 
@@ -22,6 +33,7 @@ class Admin extends BaseController
     {
         $model = new RegulationModel();
         $data['regulations'] = $model->findAll();
+
         return view('admin/manage_regulation', $data);
     }
 
@@ -49,7 +61,20 @@ class Admin extends BaseController
             'dampak_pidana' => $this->request->getVar('dampak_pidana'),
             'keterangan' => $this->request->getVar('keterangan')
         ];
-        $model->insert($data);
+        
+        if ($model->insert($data)) {
+            // Logging aktivitas ke admin_activity_log
+            $logData = [
+                'idadmin' => session()->get('idadmin'),
+                'aktivitas' => 'Menambah regulasi: ' . $data['nama_peraturan'],
+                'idregulasi' => $model->insertID(),
+                'created_at' => date('Y-m-d H:i:s'),
+                'ip_address' => $this->request->getIPAddress()
+            ];
+            $logModel = model(AdminActivityLogModel::class);
+            $logModel->insert($logData);
+        }
+
         return redirect()->to(base_url('admin/manage_regulation'));
     }
 
@@ -57,6 +82,7 @@ class Admin extends BaseController
     {
         $model = new RegulationModel();
         $data['regulation'] = $model->find($id);
+
         return view('admin/edit_regulation', $data);
     }
 
@@ -80,21 +106,41 @@ class Admin extends BaseController
             'dampak_pidana' => $this->request->getVar('dampak_pidana'),
             'keterangan' => $this->request->getVar('keterangan')
         ];
-        $model->update($id, $data);
+        
+        if ($model->update($id, $data)) {
+            // Logging aktivitas ke admin_activity_log
+            $logData = [
+                'idadmin' => session()->get('idadmin'),
+                'aktivitas' => 'Memperbarui regulasi: ' . $data['nama_peraturan'],
+                'idregulasi' => $id,
+                'created_at' => date('Y-m-d H:i:s'),
+                'ip_address' => $this->request->getIPAddress()
+            ];
+            $logModel = model(AdminActivityLogModel::class);
+            $logModel->insert($logData);
+        }
+
         return redirect()->to(base_url('admin/manage_regulation'));
     }
 
     public function delete_regulation($id)
     {
         $model = new RegulationModel();
-        $model->delete($id);
-        return redirect()->to(base_url('admin/manage_regulation'));
-    }
+        $regulasi = $model->find($id);
+        
+        if ($model->delete($id)) {
+            // Logging aktivitas ke admin_activity_log
+            $logData = [
+                'idadmin' => session()->get('idadmin'),
+                'aktivitas' => 'Menghapus regulasi: ' . $regulasi['nama_peraturan'],
+                'idregulasi' => $id,
+                'created_at' => date('Y-m-d H:i:s'),
+                'ip_address' => $this->request->getIPAddress()
+            ];
+            $logModel = model(AdminActivityLogModel::class);
+            $logModel->insert($logData);
+        }
 
-    public function detail_regulation($id)
-    {
-        $model = new RegulationModel();
-        $data['regulation'] = $model->find($id);
-        return view('admin/detail_regulation', $data);
+        return redirect()->to(base_url('admin/manage_regulation'));
     }
 }

@@ -35,20 +35,39 @@
         <div class="container-fluid">
             <!-- Main row -->
             <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Selamat datang di Dashboard Super Admin</h3>
+                <div class="col-lg-4 col-6">
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3><?= $total_regulations ?></h3>
+                            <p>Total Regulasi</p>
                         </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                            <!-- content here -->
+                        <div class="icon">
+                            <i class="fas fa-book"></i>
                         </div>
-                        <!-- /.card-body -->
                     </div>
-                    <!-- /.card -->
                 </div>
-                <!-- /.col -->
+                <div class="col-lg-4 col-6">
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3><?= $count_compliance_yes ?></h3>
+                            <p>Kepatuhan Ya</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-6">
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h3><?= $count_compliance_no ?></h3>
+                            <p>Kepatuhan Tidak</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- /.row (main row) -->
         </div>

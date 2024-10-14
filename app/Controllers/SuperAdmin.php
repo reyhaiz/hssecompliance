@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\UserModel;
+use App\Models\AdminActivityLogModel;
 use CodeIgniter\Controller;
 
 class SuperAdmin extends Controller
@@ -69,5 +70,21 @@ class SuperAdmin extends Controller
     {
         $this->userModel->delete($id);
         return redirect()->to(base_url('superadmin/manage_admin'));
+    }
+    
+    public function admin_activity_log()
+    {
+        $logModel = new AdminActivityLogModel();
+        $userModel = new UserModel();
+
+        $activityLogs = $logModel->findAll();
+        foreach ($activityLogs as &$log) {
+            $admin = $userModel->find($log['idadmin']);
+            $log['nama_admin'] = $admin ? $admin['nama_admin'] : 'Unknown';
+        }
+
+        $data['activityLogs'] = $activityLogs;
+
+        return view('superadmin/admin_activity_log', $data);
     }
 }

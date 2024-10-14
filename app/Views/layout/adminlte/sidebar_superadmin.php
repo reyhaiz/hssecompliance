@@ -28,6 +28,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
+    <a href="<?= base_url('superadmin/admin_activity_log') ?>" class="nav-link">
+        <i class="nav-icon fas fa-history"></i>
+        <p>Admin Activity Log</p>
+    </a>
+</li>
+                <li class="nav-item">
                     <a href="<?= base_url('superadmin/manage_admin') ?>" class="nav-link <?= (current_url() == base_url('superadmin/manage_admin')) ? 'active' : '' ?>">
                         <i class="nav-icon fas fa-user-cog"></i>
                         <p>Manage Admin</p>
