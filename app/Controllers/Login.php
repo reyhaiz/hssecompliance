@@ -52,30 +52,6 @@ class Login extends BaseController
         }
     }
 
-    public function forgot_password()
-    {
-        return view('login/forgot_password');
-    }
-
-    public function send_reset_link()
-    {
-        $session = session();
-        $email = $this->request->getPost('email');
-
-        $model = new UserModel();
-        $data = $model->where('email_admin', $email)->first(); // Ensure 'email_admin' is used
-
-        if ($data) {
-            $updateData = ['reset_requested' => true];
-            $model->update($data['idadmin'], $updateData); // Use 'idadmin'
-            $session->setFlashdata('msg', 'Permintaan reset kata sandi telah berhasil. Silakan periksa email Anda.');
-        } else {
-            $session->setFlashdata('msg', 'Email tidak ditemukan. Hubungi super admin untuk mendaftarkan akun Anda.');
-        }
-
-        return redirect()->to('login/forgot_password');
-    }
-
     public function logout()
     {
         session()->destroy();

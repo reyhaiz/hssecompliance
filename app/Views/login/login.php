@@ -44,9 +44,6 @@
                     </div>
                 </div>
             </form>
-            <p class="mb-1">
-                <a href="<?= site_url('login/forgot_password') ?>">Saya lupa kata sandi</a>
-            </p>
         </div>
     </div>
 </div>

@@ -70,9 +70,4 @@ class SuperAdmin extends Controller
         $this->userModel->delete($id);
         return redirect()->to(base_url('superadmin/manage_admin'));
     }
-
-    public function reset_password()
-    {
-        return view('superadmin/reset_password');
-    }
 }
