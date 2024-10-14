@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Models\UserModel;
-use App\Models\AdminActivityLogModel;
 use CodeIgniter\Controller;
 
 class SuperAdmin extends Controller
@@ -33,15 +32,23 @@ class SuperAdmin extends Controller
 
     public function save_admin()
     {
+        // Hash default password
+        $password = 'adminpassword123';
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+
+        // Data Admin
         $data = [
-            'nama' => $this->request->getPost('nama'),
-            'email' => $this->request->getPost('email'),
-            'kata_sandi' => password_hash($this->request->getPost('kata_sandi'), PASSWORD_BCRYPT),
+            'nama_admin' => $this->request->getVar('nama'),
+            'email_admin' => $this->request->getVar('email'),
+            'password_admin' => $hashedPassword,
             'role' => 'admin',
         ];
 
-        $this->userModel->save($data);
-        return redirect()->to(base_url('superadmin/manage_admin'));
+        if ($this->userModel->save($data)) {
+            return redirect()->to(base_url('superadmin/manage_admin'))->with('success', 'Admin berhasil ditambahkan');
+        } else {
+            return redirect()->to(base_url('superadmin/add_admin'))->with('error', 'Gagal menambahkan admin');
+        }
     }
 
     public function edit_admin($id)
@@ -52,39 +59,23 @@ class SuperAdmin extends Controller
 
     public function update_admin()
     {
-        $id = $this->request->getPost('id');
+        $id = $this->request->getVar('id');
         $data = [
-            'nama' => $this->request->getPost('nama'),
-            'email' => $this->request->getPost('email'),
+            'nama_admin' => $this->request->getVar('nama'),
+            'email_admin' => $this->request->getVar('email'),
         ];
 
-        if ($this->request->getPost('kata_sandi')) {
-            $data['kata_sandi'] = password_hash($this->request->getPost('kata_sandi'), PASSWORD_BCRYPT);
+        if ($this->request->getVar('kata_sandi')) {
+            $data['password_admin'] = password_hash($this->request->getVar('kata_sandi'), PASSWORD_BCRYPT);
         }
 
         $this->userModel->update($id, $data);
-        return redirect()->to(base_url('superadmin/manage_admin'));
+        return redirect()->to(base_url('superadmin/manage_admin'))->with('success', 'Admin berhasil diperbarui');
     }
 
     public function delete_admin($id)
     {
         $this->userModel->delete($id);
-        return redirect()->to(base_url('superadmin/manage_admin'));
-    }
-    
-    public function admin_activity_log()
-    {
-        $logModel = new AdminActivityLogModel();
-        $userModel = new UserModel();
-
-        $activityLogs = $logModel->findAll();
-        foreach ($activityLogs as &$log) {
-            $admin = $userModel->find($log['idadmin']);
-            $log['nama_admin'] = $admin ? $admin['nama_admin'] : 'Unknown';
-        }
-
-        $data['activityLogs'] = $activityLogs;
-
-        return view('superadmin/admin_activity_log', $data);
+        return redirect()->to(base_url('superadmin/manage_admin'))->with('success', 'Admin berhasil dihapus');
     }
 }

@@ -41,8 +41,8 @@
                             <input type="email" class="form-control" id="email" name="email" required>
                         </div>
                         <div class="form-group">
-                            <label for="kata_sandi">Kata Sandi</label>
-                            <input type="password" class="form-control" id="kata_sandi" name="kata_sandi" required>
+                            <label for="kata_sandi">Kata Sandi (Default: adminpassword123)</label>
+                            <input type="password" class="form-control" id="kata_sandi" name="kata_sandi" value="adminpassword123" readonly>
                         </div>
                         <button type="submit" class="btn btn-primary">Save</button>
                     </form>
