@@ -36,7 +36,6 @@ $routes->post('superadmin/save_admin', 'SuperAdmin::save_admin');
 $routes->get('superadmin/edit_admin/(:num)', 'SuperAdmin::edit_admin/$1');
 $routes->post('superadmin/update_admin', 'SuperAdmin::update_admin');
 $routes->get('superadmin/delete_admin/(:num)', 'SuperAdmin::delete_admin/$1');
-$routes->get('superadmin/profile', 'SuperAdmin::profile');
 $routes->get('superadmin/reset_password', 'SuperAdmin::reset_password');
 $routes->get('logout', 'Login::logout');
 $routes->get('/about', 'PublicRegulationController::about');

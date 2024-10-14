@@ -71,11 +71,6 @@ class SuperAdmin extends Controller
         return redirect()->to(base_url('superadmin/manage_admin'));
     }
 
-    public function profile()
-    {
-        return view('superadmin/profile');
-    }
-
     public function reset_password()
     {
         return view('superadmin/reset_password');
