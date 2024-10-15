@@ -27,6 +27,8 @@
                 <div class="col-12">
                     <form action="<?= base_url('admin/update_regulation') ?>" method="post">
                         <input type="hidden" name="id" value="<?= esc($regulation['idregulasi']) ?>">
+                        
+                        <!-- Jenis Peraturan -->
                         <div class="form-group">
                             <label for="jenis_peraturan">Jenis Peraturan</label>
                             <select class="form-control" id="jenis_peraturan" name="jenis_peraturan">
@@ -37,10 +39,14 @@
                                 <option value="Persyaratan Lainnya" <?= ($regulation['jenis_peraturan'] == 'Persyaratan Lainnya') ? 'selected' : '' ?>>Persyaratan Lainnya</option>
                             </select>
                         </div>
+
+                        <!-- Nama Peraturan -->
                         <div class="form-group">
                             <label for="nama_peraturan">Nama Peraturan</label>
                             <input type="text" class="form-control" id="nama_peraturan" name="nama_peraturan" value="<?= esc($regulation['nama_peraturan']) ?>" maxlength="264">
                         </div>
+
+                        <!-- Fungsi Terkait -->
                         <div class="form-group">
                             <label for="fungsi_terkait">Fungsi Terkait</label><br>
                             <?php
@@ -58,6 +64,8 @@
                             <input type="checkbox" name="fungsi_terkait[]" value="ICT" <?= in_array('ICT', $fungsi_terkait) ? 'checked' : '' ?>> ICT<br>
                             <input type="checkbox" name="fungsi_terkait[]" value="Semua Fungsi" <?= in_array('Semua Fungsi', $fungsi_terkait) ? 'checked' : '' ?>> Semua Fungsi<br>
                         </div>
+
+                        <!-- Kepatuhan -->
                         <div class="form-group">
                             <label for="kepatuhan">Kepatuhan</label>
                             <select class="form-control" id="kepatuhan" name="kepatuhan">
@@ -65,22 +73,32 @@
                                 <option value="Tidak" <?= ($regulation['kepatuhan'] == 'Tidak') ? 'selected' : '' ?>>Tidak</option>
                             </select>
                         </div>
+
+                        <!-- Isi Peraturan -->
                         <div class="form-group">
                             <label for="isi_peraturan">Isi Peraturan</label>
                             <textarea class="form-control" id="isi_peraturan" name="isi_peraturan" maxlength="1000"><?= esc($regulation['isi_peraturan']) ?></textarea>
                         </div>
+
+                        <!-- Poin Kritis -->
                         <div class="form-group">
                             <label for="poin_kritis">Poin Kritis</label>
                             <textarea class="form-control" id="poin_kritis" name="poin_kritis"><?= esc($regulation['poin_kritis']) ?></textarea>
                         </div>
+
+                        <!-- Instansi Penerbit -->
                         <div class="form-group">
                             <label for="instansi_penerbit">Instansi Penerbit</label>
                             <input type="text" class="form-control" id="instansi_penerbit" name="instansi_penerbit" value="<?= esc($regulation['instansi_penerbit']) ?>" maxlength="200">
                         </div>
+
+                        <!-- Analisis Risiko Uraian -->
                         <div class="form-group">
                             <label for="analisis_risiko_uraian">Analisis Risiko Uraian</label>
                             <textarea class="form-control" id="analisis_risiko_uraian" name="analisis_risiko_uraian" maxlength="600"><?= esc($regulation['analisis_risiko_uraian']) ?></textarea>
                         </div>
+
+                        <!-- Analisis Risiko Kategori -->
                         <div class="form-group">
                             <label for="analisis_risiko_kategori">Analisis Risiko Kategori</label>
                             <select class="form-control" id="analisis_risiko_kategori" name="analisis_risiko_kategori">
@@ -91,6 +109,8 @@
                                 <option value="E" <?= ($regulation['analisis_risiko_kategori'] == 'E') ? 'selected' : '' ?>>E</option>
                             </select>
                         </div>
+
+                        <!-- Analisis Risiko Skor -->
                         <div class="form-group">
                             <label for="analisis_risiko_skor">Analisis Risiko Skor</label>
                             <select class="form-control" id="analisis_risiko_skor" name="analisis_risiko_skor">
@@ -102,6 +122,8 @@
                                 <option value="5" <?= ($regulation['analisis_risiko_skor'] == '5') ? 'selected' : '' ?>>5</option>
                             </select>
                         </div>
+
+                        <!-- Analisis Peraturan Status -->
                         <div class="form-group">
                             <label for="analisis_peraturan_status">Analisis Peraturan Status</label>
                             <select class="form-control" id="analisis_peraturan_status" name="analisis_peraturan_status">
@@ -110,18 +132,26 @@
                                 <option value="T" <?= ($regulation['analisis_peraturan_status'] == 'T') ? 'selected' : '' ?>>T</option>
                             </select>
                         </div>
+
+                        <!-- Dampak Finansial -->
                         <div class="form-group">
                             <label for="dampak_finansial">Dampak Finansial</label>
                             <input type="text" class="form-control" id="dampak_finansial" name="dampak_finansial" value="<?= esc($regulation['dampak_finansial']) ?>" maxlength="200">
                         </div>
+
+                        <!-- Dampak Pidana -->
                         <div class="form-group">
                             <label for="dampak_pidana">Dampak Pidana</label>
                             <input type="text" class="form-control" id="dampak_pidana" name="dampak_pidana" value="<?= esc($regulation['dampak_pidana']) ?>" maxlength="200">
                         </div>
+
+                        <!-- Keterangan -->
                         <div class="form-group">
                             <label for="keterangan">Keterangan</label>
                             <textarea class="form-control" id="keterangan" name="keterangan" maxlength="400"><?= esc($regulation['keterangan']) ?></textarea>
                         </div>
+
+                        <!-- Tombol Submit -->
                         <button type="submit" class="btn btn-primary">Update</button>
                     </form>
                 </div>
