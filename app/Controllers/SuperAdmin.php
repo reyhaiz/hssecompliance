@@ -3,20 +3,41 @@
 namespace App\Controllers;
 
 use App\Models\UserModel;
+use App\Models\RegulationModel;
+use App\Models\AdminActivityLogModel;
 use CodeIgniter\Controller;
 
 class SuperAdmin extends Controller
 {
     protected $userModel;
+    protected $regulationModel;
+    protected $adminActivityLogModel;
 
     public function __construct()
     {
         $this->userModel = new UserModel();
+        $this->regulationModel = new RegulationModel();
+        $this->adminActivityLogModel = new AdminActivityLogModel();
     }
 
     public function dashboard()
     {
-        return view('superadmin/dashboard');
+        // Menghitung jumlah total regulasi
+        $totalRegulations = $this->regulationModel->countAllResults();
+
+        // Menghitung jumlah regulasi dengan kepatuhan "Ya"
+        $countComplianceYes = $this->regulationModel->where('kepatuhan', 'Ya')->countAllResults();
+
+        // Menghitung jumlah regulasi dengan kepatuhan "Tidak"
+        $countComplianceNo = $this->regulationModel->where('kepatuhan', 'Tidak')->countAllResults();
+
+        $data = [
+            'total_regulations' => $totalRegulations,
+            'count_compliance_yes' => $countComplianceYes,
+            'count_compliance_no' => $countComplianceNo,
+        ];
+
+        return view('superadmin/dashboard', $data);
     }
 
     public function manage_admin()
@@ -80,5 +101,19 @@ class SuperAdmin extends Controller
     {
         $this->userModel->delete($id);
         return redirect()->to(base_url('superadmin/manage_admin'))->with('success', 'Admin berhasil dihapus');
+    }
+
+    public function admin_activity_log()
+    {
+        $activityLogs = $this->adminActivityLogModel
+            ->select('admin_activity_log.*, admin.nama_admin')
+            ->join('admin', 'admin_activity_log.idadmin = admin.idadmin', 'left')
+            ->findAll();
+
+        $data = [
+            'activityLogs' => $activityLogs,
+        ];
+
+        return view('superadmin/admin_activity_log', $data);
     }
 }
