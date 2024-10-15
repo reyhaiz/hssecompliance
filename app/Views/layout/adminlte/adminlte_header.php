@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="<?= base_url('dist/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('dist/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('dist/plugins/toastr/toastr.min.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('dist/plugins/ionicons/css/ionicons.min.css') ?>"> <!-- Tambahkan baris ini -->
+    <link rel="stylesheet" href="<?= base_url('dist/plugins/ionicons/css/ionicons.min.css') ?>">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -23,7 +23,7 @@
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">Hello, you are logged in as Admin.</a>
+                <a class="nav-link" href="#">Hello, you are logged in as <?= session()->get('nama') ?>.</a>
             </li>
         </ul>
     </nav>
