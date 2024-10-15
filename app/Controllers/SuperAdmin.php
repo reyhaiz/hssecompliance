@@ -44,7 +44,7 @@ class SuperAdmin extends Controller
             'role' => 'admin',
         ];
 
-        if ($this->userModel->save($data)) {
+        if ($this->userModel->insert($data)) {
             return redirect()->to(base_url('superadmin/manage_admin'))->with('success', 'Admin berhasil ditambahkan');
         } else {
             return redirect()->to(base_url('superadmin/add_admin'))->with('error', 'Gagal menambahkan admin');
@@ -69,8 +69,11 @@ class SuperAdmin extends Controller
             $data['password_admin'] = password_hash($this->request->getVar('kata_sandi'), PASSWORD_BCRYPT);
         }
 
-        $this->userModel->update($id, $data);
-        return redirect()->to(base_url('superadmin/manage_admin'))->with('success', 'Admin berhasil diperbarui');
+        if ($this->userModel->update($id, $data)) {
+            return redirect()->to(base_url('superadmin/manage_admin'))->with('success', 'Admin berhasil diperbarui');
+        } else {
+            return redirect()->back()->with('error', 'Gagal memperbarui admin');
+        }
     }
 
     public function delete_admin($id)

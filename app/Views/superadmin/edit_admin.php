@@ -42,8 +42,8 @@
                             <input type="email" class="form-control" id="email" name="email" value="<?= $admin['email_admin'] ?>" required>
                         </div>
                         <div class="form-group">
-                            <label for="kata_sandi">Kata Sandi</label>
-                            <input type="password" class="form-control" id="kata_sandi" name="kata_sandi">
+                            <label for="kata_sandi">Kata Sandi (Kosongkan jika tidak ingin diubah)</label>
+                            <input type="password" class="form-control" id="kata_sandi" name="kata_sandi" placeholder="******">
                         </div>
                         <button type="submit" class="btn btn-primary">Save</button>
                     </form>
