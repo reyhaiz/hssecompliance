@@ -1,5 +1,6 @@
 <?php
 namespace App\Controllers;
+
 use App\Models\UserModel;
 
 class Login extends BaseController
@@ -14,46 +15,53 @@ class Login extends BaseController
         $session = session();
         $model = new UserModel();
 
-        // Use 'email_admin' here to match the database column
+        // Mendapatkan input email dan password dari form login
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
 
-        // Ensure the correct column name 'email_admin' is used
+        // Mencari data pengguna berdasarkan email
         $data = $model->where('email_admin', $email)->first();
 
         if ($data) {
-            $pass = $data['password_admin']; // Ensure you use 'password_admin'
+            // Verifikasi password yang diinput dengan password yang ada di database
+            $pass = $data['password_admin']; 
             $authenticatePassword = password_verify($password, $pass);
 
             if ($authenticatePassword) {
-                // Use 'idadmin' instead of 'id'
+                // Set data session berdasarkan role pengguna (admin atau superadmin)
                 $ses_data = [
-                    'idadmin' => $data['idadmin'], // Updated to 'idadmin'
-                    'nama' => $data['nama_admin'], // Use 'nama_admin'
-                    'email' => $data['email_admin'], // Use 'email_admin'
-                    'role' => $data['role'], // Ensure 'role' matches
+                    'idadmin' => $data['idadmin'], 
+                    'nama' => $data['nama_admin'], 
+                    'email' => $data['email_admin'], 
+                    'role' => $data['role'], 
                     'logged_in' => TRUE
                 ];
                 $session->set($ses_data);
 
-                // Redirect based on role
+                // Redirect pengguna berdasarkan role
                 if ($data['role'] == 'superadmin') {
                     return redirect()->to('/superadmin/dashboard');
-                } else {
+                } elseif ($data['role'] == 'admin') {
                     return redirect()->to('/admin/dashboard');
+                } else {
+                    $session->setFlashdata('msg', 'Role not recognized');
+                    return redirect()->to('/login');
                 }
             } else {
-                $session->setFlashdata('msg', 'Wrong Password');
+                // Jika password salah
+                $session->setFlashdata('msg', 'Password salah');
                 return redirect()->to('/login');
             }
         } else {
-            $session->setFlashdata('msg', 'Email not Found');
+            // Jika email tidak ditemukan
+            $session->setFlashdata('msg', 'Email tidak ditemukan');
             return redirect()->to('/login');
         }
     }
 
     public function logout()
     {
+        // Menghancurkan session saat pengguna logout
         session()->destroy();
         return redirect()->to(base_url('/'));
     }
