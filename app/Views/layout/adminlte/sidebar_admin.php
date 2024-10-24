@@ -15,7 +15,7 @@
             </div>
             <div class="info">
                 <!-- Memastikan nama admin yang sedang login ditampilkan -->
-                <a href="#" class="d-block"><?= session()->get('nama_admin') ?></a>
+                <a href="#" class="d-block"><?= session()->get('nama') ?></a>
             </div>
         </div>
 

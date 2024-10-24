@@ -23,7 +23,7 @@ class Admin extends BaseController
         $countComplianceYes = $this->regulationModel->where('kepatuhan', 'Ya')->countAllResults();
 
         // Mengambil nama admin yang sedang login dari session
-        $adminName = session()->get('nama_admin');
+        $adminName = session()->get('nama');
 
         // Menyiapkan data yang akan dikirim ke view dashboard
         $data = [

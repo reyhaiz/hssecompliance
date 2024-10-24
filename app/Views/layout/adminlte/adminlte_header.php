@@ -24,7 +24,7 @@
         <ul class="navbar-nav ml-auto">
             <!-- Memastikan nama admin yang sedang login ditampilkan -->
             <li class="nav-item">
-                <a class="nav-link" href="#">Halo, Anda login sebagai <?= session()->get('nama_admin') ?>.</a>
+                <a class="nav-link" href="#">Halo, Anda login sebagai <?= session()->get('nama') ?>.</a>
             </li>
         </ul>
     </nav>
