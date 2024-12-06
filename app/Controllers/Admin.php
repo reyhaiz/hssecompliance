@@ -53,11 +53,37 @@ class Admin extends BaseController
 
     public function save_regulation()
     {
-        // Mengambil data dari form input dan menyimpan ke dalam array
+        // Aturan validasi: Semua field wajib diisi
+        $requiredFields = [
+            'jenis_peraturan', 'nama_peraturan', 'fungsi_terkait', 
+            'kepatuhan', 'isi_peraturan', 'poin_kritis', 
+            'instansi_penerbit', 'analisis_risiko_uraian', 
+            'analisis_risiko_kategori', 'analisis_risiko_skor', 
+            'analisis_peraturan_status', 'dampak_finansial', 
+            'dampak_pidana', 'keterangan'
+        ];
+
+        $emptyFields = [];
+        foreach ($requiredFields as $field) {
+            if (empty($this->request->getVar($field))) {
+                $emptyFields[] = $field;
+            }
+        }
+
+        // Jika ada field yang kosong
+        if (!empty($emptyFields)) {
+            // Siapkan pesan error
+            $errorMessage = 'Field berikut wajib diisi: ' . implode(', ', $emptyFields);
+            
+            // Redirect kembali ke form dengan pesan error
+            return redirect()->back()->withInput()->with('error', $errorMessage);
+        }
+
+        // Semua field terisi, proses data
         $data = [
             'jenis_peraturan' => $this->request->getVar('jenis_peraturan'),
             'nama_peraturan' => $this->request->getVar('nama_peraturan'),
-            'fungsi_terkait' => implode(',', $this->request->getVar('fungsi_terkait')),
+            'fungsi_terkait' => implode(',', (array)$this->request->getVar('fungsi_terkait')),
             'kepatuhan' => $this->request->getVar('kepatuhan'),
             'isi_peraturan' => $this->request->getVar('isi_peraturan'),
             'poin_kritis' => $this->request->getVar('poin_kritis'),
@@ -71,7 +97,7 @@ class Admin extends BaseController
             'keterangan' => $this->request->getVar('keterangan'),
         ];
 
-        // Memasukkan data ke dalam database
+        // Simpan data ke database
         if ($this->regulationModel->insert($data)) {
             return redirect()->to(base_url('admin/manage_regulation'))->with('success', 'Regulasi berhasil ditambahkan.');
         } else {
@@ -93,11 +119,39 @@ class Admin extends BaseController
         // Mengambil ID regulasi yang akan diperbarui
         $id = $this->request->getVar('id');
 
-        // Mengambil data dari form input dan menyimpan ke dalam array
+        // Aturan validasi: Semua field wajib diisi
+        $requiredFields = [
+            'jenis_peraturan', 'nama_peraturan', 'fungsi_terkait', 
+            'kepatuhan', 'isi_peraturan', 'poin_kritis', 
+            'instansi_penerbit', 'analisis_risiko_uraian', 
+            'analisis_risiko_kategori', 'analisis_risiko_skor', 
+            'analisis_peraturan_status', 'dampak_finansial', 
+            'dampak_pidana', 'keterangan'
+        ];
+
+        $emptyFields = [];
+        foreach ($requiredFields as $field) {
+            if (empty($this->request->getVar($field))) {
+                $emptyFields[] = $field;
+            }
+        }
+
+        // Jika ada field yang kosong
+        if (!empty($emptyFields)) {
+            // Siapkan pesan error
+            $errorMessage = 'Field berikut wajib diisi: ' . implode(', ', $emptyFields);
+
+            // Redirect kembali ke form dengan pesan error dan input sebelumnya
+            return redirect()->to(base_url('admin/edit_regulation/' . $id))
+                             ->withInput()
+                             ->with('error', $errorMessage);
+        }
+
+        // Semua field terisi, proses data
         $data = [
             'jenis_peraturan' => $this->request->getVar('jenis_peraturan'),
             'nama_peraturan' => $this->request->getVar('nama_peraturan'),
-            'fungsi_terkait' => implode(',', $this->request->getVar('fungsi_terkait')),
+            'fungsi_terkait' => implode(',', (array)$this->request->getVar('fungsi_terkait')),
             'kepatuhan' => $this->request->getVar('kepatuhan'),
             'isi_peraturan' => $this->request->getVar('isi_peraturan'),
             'poin_kritis' => $this->request->getVar('poin_kritis'),

@@ -25,6 +25,13 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
+                    <!-- Tampilkan pesan error jika ada -->
+                    <?php if (session()->getFlashdata('error')): ?>
+                        <div class="alert alert-danger">
+                            <?= session()->getFlashdata('error') ?>
+                        </div>
+                    <?php endif; ?>
+
                     <form action="<?= base_url('admin/save_regulation') ?>" method="post">
                         <div class="form-group">
                             <label for="jenis_peraturan">Jenis Peraturan</label>
